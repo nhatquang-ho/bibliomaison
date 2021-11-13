@@ -32,5 +32,5 @@ jobs:
           FTP_PASSWORD : ${{ secrets.FTP_PASSWORD }}
         run: |
           sudo apt install lftp
-          lftp "$FTP_USERNAME":"$FTP_PASSWORD"@ftpperso.free.fr
+          lftp -c "open -u "$FTP_USERNAME","$FTP_PASSWORD" ftpperso.free.fr; ls"
           
