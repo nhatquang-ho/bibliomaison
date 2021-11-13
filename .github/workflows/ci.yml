@@ -27,7 +27,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: test
+        env:
+          FTP_USERNAME : ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD : ${{ secrets.FTP_PASSWORD }}
         run: |
           sudo apt install lftp
-          lftp bibliomaison@ftpperso.free.fr
+          lftp "$FTP_USERNAME":"$FTP_PASSWORD"@ftpperso.free.fr
           
