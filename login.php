@@ -26,11 +26,10 @@ header("Location:index.php");
 <html>
 <head>
 <title>User Login</title>
-<style>
-.error {color: #FF0000;}
-</style>
+<link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 <form name="frmUser" method="post" action="" align="center">
 <div class="error"><?php if($message!="") { echo $message; } ?></div>
 <h3 align="center">Enter Login Details</h3>

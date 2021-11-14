@@ -4,12 +4,14 @@ session_start();
 <html>
 <head>
 <title>HOME PAGE</title>
+<link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
 
 <?php
 if($_SESSION["name"]) {
 ?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a><br>
 <a href="options.php"><button type="button">Parameters</button></a>
   <hgroup>
@@ -42,7 +44,12 @@ Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" tit
 </script>
 
 <?php
-}else echo '<h1>Please <a href="login.php">click here</a> to login</h1>';
+}else{
+?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+<h1>Please <a href="login.php">click here</a> to login</h1>
+<?php
+} 
 ?>
 </body>
 </html>

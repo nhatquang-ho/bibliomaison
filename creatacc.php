@@ -1,12 +1,9 @@
-<!DOCTYPE HTML>
 <html>
 <head>
-<style>
-.error {color: #FF0000;}
-</style>
+<link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
-
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
 
