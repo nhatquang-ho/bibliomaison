@@ -28,6 +28,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
+#Connect to database
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
     die('<br>Connexion database impossible : <br>' . mysql_error());
@@ -44,6 +45,8 @@ if(isset($_GET['delbook'])){
 $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die("Erreur SQL : $sql<br/>".mysql_error());
 }
 
+
+#Search book via isbn
 if(isset($_POST['search_isbn'])){
 $isbn_s=$_POST["isbn"];
 
@@ -51,18 +54,21 @@ $result = mysql_query("SELECT isbn,title,year FROM $name WHERE isbn='$isbn_s'") 
 if (mysql_num_rows($result)>0) {
   echo '<table>';
   echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>delete_book</th><th>update_book</th></tr></h4>';
-  // output data of each row
+
+  #display results
   while ($row = mysql_fetch_assoc($result)) {
     $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
-    echo '<tr><th>' . $row["isbn"]. '</th><th>' . $row["title"]. '</th><th>' . $row["year"]. '</th>
-          <th><a href="?delbook='.$row["isbn"].'">del</a></th>
-          <th><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></th></tr>';
+    echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
+          <td><a href="?delbook='.$row["isbn"].'">del</a></td>
+          <td><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></td></tr>';
   }
   echo '</table>';
 }else {
   echo "0 book found";
 }
 }
+
+#Search book via name
 elseif(isset($_POST['search_name'])){
 $title_s=$_POST["title"];
 
@@ -70,12 +76,13 @@ $result = mysql_query("SELECT isbn,title,year FROM $name WHERE title='$title_s'"
 if (mysql_num_rows($result)>0) {
   echo '<table>';
   echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>delete_book</th><th>update_book</th></tr></h4>';
-  // output data of each row
+  
+  #display results
   while ($row = mysql_fetch_assoc($result)) {
     $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
-    echo '<tr><th>' . $row["isbn"]. '</th><th>' . $row["title"]. '</th><th>' . $row["year"]. '</th>
-          <th><a href="?delbook='.$row["isbn"].'">del</a></th>
-          <th><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></th></tr>';
+    echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
+          <td><a href="?delbook='.$row["isbn"].'">del</a></td>
+          <td><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></td></tr>';
   }
   echo '</table>';
 }else {
@@ -83,17 +90,18 @@ if (mysql_num_rows($result)>0) {
 }
 }else{
 
-// sql to create table
+#Display all books
 $result = mysql_query("SELECT isbn,title,year FROM $name") or die("Erreur SQL : $sql<br/>".mysql_error());
 if (mysql_num_rows($result)>0) {
   echo '<table>';
   echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>delete_book</th><th>update_book</th></tr></h4>';
-  // output data of each row
+  
+  #Display results
   while ($row = mysql_fetch_assoc($result)) {
     $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
-    echo '<tr><th>' . $row["isbn"]. '</th><th>' . $row["title"]. '</th><th>' . $row["year"]. '</th>
-          <th><a href="?delbook='.$row["isbn"].'">del</a></th>
-          <th><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></th></tr>';
+    echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
+          <td><a href="?delbook='.$row["isbn"].'">del</a></td>
+          <td><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></td></tr>';
   }
   echo '</table>';
 } else {
@@ -102,7 +110,7 @@ if (mysql_num_rows($result)>0) {
 }
 mysql_close($link);
 ?>
-
+    <br>
     <nav><a href="index.php">Back to main menu</a></nav>
 
 <?php

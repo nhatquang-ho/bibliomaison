@@ -27,14 +27,14 @@ Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" tit
 
     <footer style="font-size: small;">
      <hr />
-     <div>Copyright 2020</div>
+     <div>Created in 2020</div>
      <a href="report.php">Report problems</a>
     </footer>
 
 
 <script type="text/javascript">
     function clicked() {
-       if (confirm('Do you want to submit?')) {
+       if (confirm('Do you want to delete all books?')) {
            return true;
        } else {
            return false;
