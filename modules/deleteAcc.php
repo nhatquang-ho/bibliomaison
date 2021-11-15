@@ -12,6 +12,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
+$link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
     die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
@@ -32,7 +33,7 @@ else{
 
     echo '<script>alert("Your account is successfully deleted");</script>';
     echo '<script>console.log("User deleted")</script>';
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/login.php"} , 500);</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/logout.php"} , 500);</script>';
 }
 
 ?>

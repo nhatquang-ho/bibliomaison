@@ -9,28 +9,6 @@ session_start();
     <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
 </head>
 
-<body>
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-
-    <form name="frmUser" method="post" action="" align="center">
-        <div class="error"><?php if($message!="") { echo $message; } ?></div>
-        <h3 align="center">Enter Login Details</h3>
-        Username:<br>
-        <input type="text" name="user_name">
-        <br>
-        Password:<br>
-        <input type="password" name="password">
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-        <a href="creatacc.php"><button type="button">Create your account</button></a>
-    </form>
-    <center>
-        <p>default account - tipou:tipou</p>
-    </center>
-</body>
-
-</html>
-
 <?php
 
 include '../modules/loadenv.php';
@@ -58,3 +36,25 @@ if(isset($_SESSION["name"])) {
    echo '<script>window.top.location="../index.php";</script>';
 }
 ?>
+
+<body>
+    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+
+    <form name="frmUser" method="post" action="" align="center">
+        <div class="error"><?php if($message!="") { echo $message; } ?></div>
+        <h3 align="center">Enter Login Details</h3>
+        Username:<br>
+        <input type="text" name="user_name">
+        <br>
+        Password:<br>
+        <input type="password" name="password">
+        <br><br>
+        <input type="submit" name="submit" value="Submit">
+        <a href="creatacc.php"><button type="button">Create your account</button></a>
+    </form>
+    <center>
+        <p>default account - tipou:tipou</p>
+    </center>
+</body>
+
+</html>
