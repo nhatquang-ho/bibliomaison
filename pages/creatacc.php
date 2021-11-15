@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="mainpage.css">
+<link rel="stylesheet" type="text/css" href="../css/mainpage.css">
 </head>
 <body>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
@@ -67,8 +67,8 @@ function test_input($data) {
 
 <?php
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $pwdErr=="")){
@@ -87,7 +87,7 @@ if (!$db_selected) {
     $existacc = mysql_query("SELECT user_name FROM login_user where user_name='$username'") or die("Erreur SQL : $sql<br/>".mysql_error());
     if(mysql_fetch_assoc($existacc)){
       die('username existed, please choose another one<br>
-        <nav><a href="index.php">Back to main menu</a></nav>
+        <nav><a href="../index.php">Back to main menu</a></nav>
         ');
     }
     $adduser = mysql_query("INSERT INTO login_user(name,user_name,password) VALUES('$name','$username','$pass')") or die("Erreur SQL : $sql<br/>".mysql_error());

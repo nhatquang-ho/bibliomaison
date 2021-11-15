@@ -1,0 +1,11 @@
+DB_URL=your_database_url
+DB_NAME=your_database_username
+DB_PASS=your_database_password
+
+SMTP_URL=
+SMTP_PORT=
+SMTP_TO=
+
+CC_MAIL_1=
+CC_MAIL_2=
+BCC_MAIL=

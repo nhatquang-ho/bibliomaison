@@ -4,7 +4,7 @@ session_start();
 <html>
 <head>
   <title>ADD BOOK</title>
-  <link rel="stylesheet" type="text/css" href="mainpage.css">
+  <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
 </head>
 <body>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
@@ -55,7 +55,7 @@ $isbnErr=$titleErr=$yearErr="";
 
 
   Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
-  <h1>Public Library: Create a new book record</h1>
+  <h1>Public Library: Create a new book:</h1>
   <form method="post" action="">
     <label>ISBN: <input name="isbn" /></label>
     <span class="error">* <?php echo $isbnErr;?></span>
@@ -72,8 +72,8 @@ $isbnErr=$titleErr=$yearErr="";
 
 <?php
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 #if no error
@@ -96,7 +96,7 @@ $year = $_POST['year'];
 $existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
     if(mysql_fetch_assoc($existbook)){
       die('book existed<br>
-        <nav><a href="index.php">Back to main menu</a></nav>
+        <nav><a href="../index.php">Back to main menu</a></nav>
         ');
     }
 
@@ -109,7 +109,7 @@ mysql_close($link);
 }
 ?>
 
-    <nav><a href="index.php">Back to main menu</a></nav>
+    <nav><a href="../index.php">Back to main menu</a></nav>
     <?php
 }else{
 ?>

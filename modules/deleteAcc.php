@@ -9,7 +9,7 @@ $name=$_SESSION["username"];
 <?php
 
 include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
@@ -32,7 +32,7 @@ else{
     $dellogin=mysql_query("DELETE FROM login_user WHERE user_name='$name'") or die("Erreur SQL : $sql<br/>".mysql_error());
 
     echo "your account is succesfully deleted<br>";
-    echo '<nav><a href="index.php">Back to main menu</a></nav>';
+    echo '<nav><a href="../index.php">Back to main menu</a></nav>';
     echo '<script type="text/javascript">setTimeout(function(){window.top.location="logout.php"} , 3000);</script>';
 }
 
@@ -43,7 +43,7 @@ else{
 }else{
 ?>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-<h1>Please <a href="login.php">click here</a> to login</h1>
+<h1>Please <a href="../pages/login.php">click here</a> to login</h1>
 <?php
 } 
 ?>
