@@ -62,7 +62,11 @@ function test_input($data) {
     <p><button type="submit" name="creatacc" value="submit">Submit</button></p>
 </form>
 
+<nav><a href="login.php">Back to main menu</a></nav>
 
+
+</body>
+</html>
 
 
 <?php
@@ -72,38 +76,32 @@ $dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $pwdErr=="")){
-  $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
+$link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
-    die('<br>Connexion database impossible : <br>' . mysql_error());
+    die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
 
 $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
 if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
+   die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
 }
     $name=$_POST['name'];
     $username=$_POST['username'];
     $pass=$_POST['password'];
-    $existacc = mysql_query("SELECT user_name FROM login_user where user_name='$username'") or die("Erreur SQL : $sql<br/>".mysql_error());
+    $existacc = mysql_query("SELECT user_name FROM login_user where user_name='$username'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     if(mysql_fetch_assoc($existacc)){
-      die('username existed, please choose another one<br>
-        <nav><a href="../index.php">Back to main menu</a></nav>
-        ');
+      die('<script>alert("Username existed, please choose another one!");</script>');
+      echo '<script>console.log("Username existed")</script>';
     }
-    $adduser = mysql_query("INSERT INTO login_user(name,user_name,password) VALUES('$name','$username','$pass')") or die("Erreur SQL : $sql<br/>".mysql_error());
+    $adduser = mysql_query("INSERT INTO login_user(name,user_name,password) VALUES('$name','$username','$pass')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     $creattab = mysql_query("CREATE TABLE $username (
       isbn VARCHAR(30) NOT NULL,
       title VARCHAR(30) NOT NULL,
       year YEAR NOT NULL,
       PRIMARY KEY ( `isbn` )
       )") or die("Erreur SQL : $sql<br/>".mysql_error());
-    echo "your account is created succesfully, you will be redirected to the login page";
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="login.php"} , 3000);</script>';
+    echo '<script>alert("Your account is successfully created");</script>';
+    echo '<script>console.log("User created")</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="login.php"} , 500);</script>';
 }
 ?>
-
-    <nav><a href="login.php">Back to main menu</a></nav>
-
-
-    </body>
-</html>

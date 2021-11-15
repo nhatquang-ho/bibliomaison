@@ -21,27 +21,14 @@ Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="pages/logout.ph
 
     <menu>
       <li><a href="pages/listBooks.php"><button type="button">List all books</button></a></li>
-      <li><a href="pages/createBook.php"><button type="button">Add a new book</button></a></li>
-      <li><a href="modules/deleteAllBooks.php" onclick="return clicked()"><button type="button">Delete all books</button></a></li>
     </menu>
 
-    <footer style="font-size: small;">
+    <footer>
      <hr />
      <div>Created in 2020</div>
      <a href="pages/report.php">Report problems</a>
     </footer>
 
-
-<script type="text/javascript">
-    function clicked() {
-       if (confirm('Do you want to delete all books?')) {
-           return true;
-       } else {
-           return false;
-       }
-    }
-
-</script>
 
 <?php
 }else{

@@ -16,26 +16,25 @@ $loadvars = $dotenv->load();
 
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
-    die('<br>Connexion database impossible : <br>' . mysql_error());
+  die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
 
 $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
 if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
+ die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
 }
 
 #search and delete all books
-$result = mysql_query("SELECT isbn,title,year FROM $name") or die("Erreur SQL : $sql<br/>".mysql_error());
+$result = mysql_query("SELECT isbn,title,year FROM $name") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 while ($row = mysql_fetch_assoc($result)) {
   $isbn=$row["isbn"];
-  $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die("Erreur SQL : $sql<br/>".mysql_error());
+  $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 }
 
 
-echo "all books deleted<br>";
-echo '<nav><a href="../index.php">Back to main menu</a></nav>';
-
-echo '<script type="text/javascript">setTimeout(function(){window.top.location="../index.php"} , 3000);</script>';
+echo '<script>alert("All books deleted");</script>';
+echo '<script>console.log("All books deleted")</script>';
+echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/listBooks.php"} , 0);</script>';
 ?>
 
 

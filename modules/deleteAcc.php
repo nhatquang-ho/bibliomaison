@@ -12,28 +12,27 @@ include 'loadenv.php';
 $dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
-$link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
-    die('<br>Connexion database impossible : <br>' . mysql_error());
+    die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
 
 $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
 if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
+   die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
 }
 
 #check if it's the default account
 if ($name == 'tipou'){
-    echo "you can not delete the default account<br>";
+    echo '<script>alert("You cannot delete the default account");</script>';
 }
 #delete this account
 else{
     $deltab= mysql_query("DROP TABLE $name") or die("Erreur SQL : $sql<br/>".mysql_error());
     $dellogin=mysql_query("DELETE FROM login_user WHERE user_name='$name'") or die("Erreur SQL : $sql<br/>".mysql_error());
 
-    echo "your account is succesfully deleted<br>";
-    echo '<nav><a href="../index.php">Back to main menu</a></nav>';
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/logout.php"} , 3000);</script>';
+    echo '<script>alert("Your account is successfully deleted");</script>';
+    echo '<script>console.log("User deleted")</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/login.php"} , 500);</script>';
 }
 
 ?>

@@ -23,6 +23,10 @@ $name=$_SESSION["username"];
     <p><button type="submit" name="updbook" value="submit">Save Changes</button></p>
   </form>
 
+  <nav><a href="../index.php">Back to main menu</a></nav>
+
+</body>
+</html>
 
 
 <?php
@@ -34,14 +38,14 @@ $loadvars = $dotenv->load();
 #Connect to the database
 if(isset($_POST['updbook'])){
     $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
-if (!$link) {
-    die('<br>Connexion database impossible : <br>' . mysql_error());
-}
-
-$db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
-if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
-}
+  if (!$link) {
+    die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
+  }
+  
+  $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
+  if (!$db_selected) {
+    die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
+  }
 
 $isbn = $_POST['isbn'];
 $title = $_POST['title'];
@@ -49,15 +53,13 @@ $year = $_POST['year'];
 
 #get the book via isbn and update its information
 $sql=mysql_query("UPDATE $name SET title='$title', year='$year' WHERE isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
-
-
-echo "book updated<br>";
+echo '<script>alert("Your book is successfully updated");</script>';
+echo '<script>console.log("Book isgn-' . $isbn . ' created")</script>';
+echo '<script type="text/javascript">setTimeout(function(){window.top.location="listBooks.php"} , 500);</script>';
 
 mysql_close($link);
 }
 ?>
-
-  <nav><a href="../index.php">Back to main menu</a></nav>
 
 <?php
 }else{
@@ -68,5 +70,3 @@ mysql_close($link);
 } 
 ?>
 
-</body>
-</html>

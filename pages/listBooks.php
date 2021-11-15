@@ -22,6 +22,8 @@ $name=$_SESSION["username"];
 <input type="submit" name="search_name" value="Search book name">
 </form>
 
+
+
 <?php
 
 include '../modules/loadenv.php';
@@ -31,87 +33,108 @@ $loadvars = $dotenv->load();
 #Connect to database
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
-    die('<br>Connexion database impossible : <br>' . mysql_error());
+    die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
 
 $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
 if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
+   die ('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
 }
 
 
+#Delete a book
 if(isset($_GET['delbook'])){
   $isbn=$_GET['delbook'];
-$sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die("Erreur SQL : $sql<br/>".mysql_error());
+  $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+  echo '<script>console.log("Book isnb-'. $isbn .' deleted")</script>';
 }
 
 
 #Search book via isbn
 if(isset($_POST['search_isbn'])){
-$isbn_s=$_POST["isbn"];
+  $isbn_s=$_POST["isbn"];
 
-$result = mysql_query("SELECT isbn,title,year FROM $name WHERE isbn='$isbn_s'") or die("Erreur SQL : $sql<br/>".mysql_error());
-if (mysql_num_rows($result)>0) {
-  echo '<table>';
-  echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>delete_book</th><th>update_book</th></tr></h4>';
+  $result = mysql_query("SELECT isbn,title,year FROM $name WHERE isbn='$isbn_s'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+  if (mysql_num_rows($result)>0) {
+    echo '<table>';
+    echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>Delete Book</th><th>Update Book</th></tr></h4>';
 
-  #display results
-  while ($row = mysql_fetch_assoc($result)) {
-    $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
-    echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
-          <td><a href="?delbook='.$row["isbn"].'">del</a></td>
-          <td><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></td></tr>';
+    #display results
+    while ($row = mysql_fetch_assoc($result)) {
+      $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
+      echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
+            <td><button><a href="?delbook='.$row["isbn"].'">DEL</a></button></td>
+            <td><button><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">UPDATE</a></button></td></tr>';
+    }
+    echo '</table>';
+  }else {
+    echo "0 book found";
   }
-  echo '</table>';
-}else {
-  echo "0 book found";
-}
 }
 
 #Search book via name
 elseif(isset($_POST['search_name'])){
-$title_s=$_POST["title"];
+  $title_s=$_POST["title"];
 
-$result = mysql_query("SELECT isbn,title,year FROM $name WHERE title='$title_s'") or die("Erreur SQL : $sql<br/>".mysql_error());
-if (mysql_num_rows($result)>0) {
-  echo '<table>';
-  echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>delete_book</th><th>update_book</th></tr></h4>';
-  
-  #display results
-  while ($row = mysql_fetch_assoc($result)) {
-    $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
-    echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
-          <td><a href="?delbook='.$row["isbn"].'">del</a></td>
-          <td><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></td></tr>';
+  $result = mysql_query("SELECT isbn,title,year FROM $name WHERE title='$title_s'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+  if (mysql_num_rows($result)>0) {
+    echo '<table>';
+    echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>Delete Book</th><th>Update Book</th></tr></h4>';
+    
+    #display results
+    while ($row = mysql_fetch_assoc($result)) {
+      $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
+      echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
+            <td><button><a href="?delbook='.$row["isbn"].'">DEL</a></button></td>
+            <td><button><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">UPDATE</a></button></td></tr>';
+    }
+    echo '</table>';
+  }else {
+    echo "0 book found";
   }
-  echo '</table>';
-}else {
-  echo "0 book found";
 }
-}else{
+else {
 
-#Display all books
-$result = mysql_query("SELECT isbn,title,year FROM $name") or die("Erreur SQL : $sql<br/>".mysql_error());
-if (mysql_num_rows($result)>0) {
-  echo '<table>';
-  echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>delete_book</th><th>update_book</th></tr></h4>';
-  
-  #Display results
-  while ($row = mysql_fetch_assoc($result)) {
-    $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
-    echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
-          <td><a href="?delbook='.$row["isbn"].'">del</a></td>
-          <td><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">update</a></td></tr>';
+  #Display all books
+  $result = mysql_query("SELECT isbn,title,year FROM $name") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+  if (mysql_num_rows($result)>0) {
+    echo '<table>';
+    echo '<h4><tr><th>ISBN</th><th>Title</th><th>Year</th><th>Delete Book</th><th>Update Book</th></tr></h4>';
+    
+    #display results
+    while ($row = mysql_fetch_assoc($result)) {
+      $isbn=$row["isbn"];$title=$row["title"];$year=$row["year"];
+      echo '<tr><td>' . $row["isbn"]. '</td><td>' . $row["title"]. '</td><td>' . $row["year"]. '</td>
+            <td><button><a href="?delbook='.$row["isbn"].'">DEL</a></button></td>
+            <td><button><a href="updateBook.php?isbn='.$isbn.'&title='.$title.'&year='.$year.'">UPDATE</a></button></td></tr>';
+    }
+    echo '</table>';
+  } else {
+    echo "0 book in the library";
   }
-  echo '</table>';
-} else {
-  echo "0 book in the library";
-}
 }
 mysql_close($link);
 ?>
-    <br>
-    <nav><a href="../index.php">Back to main menu</a></nav>
+
+<br>
+<a href="createBook.php"><button type="button">Add a new book</button></a>
+<a href="../modules/deleteAllBooks.php" onclick="return clicked()"><button type="button">Delete all books</button></a>
+<br><br>
+<nav><a href="../index.php">Back to main menu</a></nav>
+
+<script type="text/javascript">
+    function clicked() {
+       if (confirm('Do you want to delete all books?')) {
+           return true;
+       } else {
+           return false;
+       }
+    }
+
+</script>
+
+</body>
+</html>
 
 <?php
 }else{
@@ -119,7 +142,5 @@ mysql_close($link);
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 <h1>Please <a href="login.php">click here</a> to login</h1>
 <?php
-} 
+}
 ?>
-  </body>
-</html>

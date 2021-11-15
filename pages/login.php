@@ -1,30 +1,7 @@
 <?php
 session_start();
-
-include '../modules/loadenv.php';
-$dotenv = new DotEnv('../.env');
-$loadvars = $dotenv->load();
-
-$message="";
-#Connect to the database
-if(isset($_POST['submit'])) {
- $con = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS'],$_ENV['DB_NAME']) or die('Unable To connect');
-$db_selected = mysql_select_db($_ENV['DB_NAME'], $con) or die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
-
-#Check if username and password are correct
-$result = mysql_query("SELECT * FROM login_user WHERE user_name='" . $_POST["user_name"] . "' and password = '". $_POST["password"]."'") or die("Erreur SQL : $query<br/>".mysql_error());
-$row  = mysql_fetch_array($result);
-if(is_array($row)) {
-$_SESSION["name"] = $row['name'];
-$_SESSION["username"]=$row['user_name'];
-} else {
-$message = "Invalid Username or Password!";
-}
-}
-if(isset($_SESSION["name"])) {
-header("Location:../index.php");
-}
 ?>
+
 <html>
 <head>
 <title>User Login</title>
@@ -48,3 +25,31 @@ header("Location:../index.php");
    <center><p>default account -  tipou:tipou</p></center>
 </body>
 </html>
+
+<?php
+
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
+$loadvars = $dotenv->load();
+
+$message="";
+#Connect to the database
+if(isset($_POST['submit'])) {
+   $con = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS'],$_ENV['DB_NAME']) or die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
+   $db_selected = mysql_select_db($_ENV['DB_NAME'], $con) or die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
+
+   #Check if username and password are correct
+   $result = mysql_query("SELECT * FROM login_user WHERE user_name='" . $_POST["user_name"] . "' and password = '". $_POST["password"]."'") or die ('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');;
+   $row  = mysql_fetch_array($result);
+   if(is_array($row)) {
+      $_SESSION["name"] = $row['name'];
+      $_SESSION["username"]=$row['user_name'];
+   } else {
+      $message = "Invalid Username or Password!";
+      echo '<script>console.log("Username or password incorrect")</script>';
+   }
+}
+if(isset($_SESSION["name"])) {
+   echo '<script>window.top.location="../index.php";</script>';
+}
+?>

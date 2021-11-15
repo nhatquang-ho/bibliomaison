@@ -11,10 +11,41 @@ session_start();
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
+if($_SESSION["name"]) {
+$name=$_SESSION["name"];
+?>
+
+Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a><br><br>
+
+<h2>Please enter the information below</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="">
+  Name: <input type="text" name="name">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  Comment: <textarea name="comment" rows="5" cols="40"></textarea>
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" value="female">Female
+  <input type="radio" name="gender" value="male">Male
+  <input type="radio" name="gender" value="other">Other
+  <span class="error">* <?php echo $genderErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">
+</form>
+
+<nav><a href="../index.php">Back to main menu</a></nav>
+
+</body>
+</html>
+
+<?php
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
-
 
 #Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,38 +86,6 @@ function test_input($data) {
 }
 ?>
 
-
-<?php
-if($_SESSION["name"]) {
-$name=$_SESSION["name"];
-?>
-
-Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a><br><br>
-
-<h2>Please enter the information below</h2>
-<p><span class="error">* required field</span></p>
-<form method="post" action="">
-  Name: <input type="text" name="name">
-  <span class="error">* <?php echo $nameErr;?></span>
-  <br><br>
-  E-mail: <input type="text" name="email">
-  <span class="error">* <?php echo $emailErr;?></span>
-  <br><br>
-  Comment: <textarea name="comment" rows="5" cols="40"></textarea>
-  <br><br>
-  Gender:
-  <input type="radio" name="gender" value="female">Female
-  <input type="radio" name="gender" value="male">Male
-  <input type="radio" name="gender" value="other">Other
-  <span class="error">* <?php echo $genderErr;?></span>
-  <br><br>
-  <input type="submit" name="submit" value="Submit">
-</form>
-
-
-
-
-
 <?php
 
 include '../modules/loadenv.php';
@@ -115,15 +114,19 @@ if (isset($_POST['submit'])) {
     $headers .= 'Bcc: '.$_ENV['BCC_MAIL']. "\r\n";
 
     if (mail($to, $subject, $message, $headers)) {
-        echo "Mail Sent.";
+      echo '<script>
+              alert("Your message was sent");
+              console.log("message sent");
+            </script>';
     }
     else {
-        echo "failed";
+      echo '<script>
+              alert("Failed to send your message");
+              console.log("failed to sent message");
+            </script>';
     }
   }
 ?>
-
-    <nav><a href="../index.php">Back to main menu</a></nav>
 
 <?php
 }else{
@@ -133,6 +136,3 @@ if (isset($_POST['submit'])) {
 <?php
 } 
 ?>
-
-</body>
-</html>

@@ -69,6 +69,10 @@ $isbnErr=$titleErr=$yearErr="";
     <button type="submit" name="creatbook" value="submit">Save</button><br>
   </form>
 
+  <nav><a href="../index.php">Back to main menu</a></nav>
+
+</body>
+</html>
 
 <?php
 
@@ -80,12 +84,12 @@ $loadvars = $dotenv->load();
 if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
-    die('<br>Connexion database impossible : <br>' . mysql_error());
+  die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
 
 $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
 if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
+  die ('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
 }
 
 $isbn = $_POST['isbn'];
@@ -93,24 +97,24 @@ $title = $_POST['title'];
 $year = $_POST['year'];
 
 #Check to see if the book wanted to add exists
-$existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
+$existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     if(mysql_fetch_assoc($existbook)){
-      die('book existed<br>
-        <nav><a href="../index.php">Back to main menu</a></nav>
-        ');
+      die('<script>alert("Book existed!");</script>');
+      echo '<script>console.log("Book existed")</script>';
     }
 
 #add the book to the database
-$sql = mysql_query("INSERT INTO $name(isbn,title,year) VALUES('$isbn','$title','$year')") or die("Erreur SQL : $sql<br/>".mysql_error());
+$sql = mysql_query("INSERT INTO $name(isbn,title,year) VALUES('$isbn','$title','$year')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
-echo "book added<br>";
+echo '<script>alert("Your book is successfully added");</script>';
+echo '<script>console.log("Book added")</script>';
+echo '<script type="text/javascript">setTimeout(function(){window.top.location="listBooks.php"} , 500);</script>';
 
 mysql_close($link);
 }
 ?>
 
-    <nav><a href="../index.php">Back to main menu</a></nav>
-    <?php
+<?php
 }else{
 ?>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
@@ -118,5 +122,3 @@ mysql_close($link);
 <?php
 } 
 ?>
-</body>
-</html>
