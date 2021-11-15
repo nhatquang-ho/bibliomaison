@@ -17,6 +17,7 @@ $name=$_SESSION["username"];
 $isbn=$title=$year="";
 $isbnErr=$titleErr=$yearErr="";
 
+#set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $isbn=$title=$year="";
 $isbnErr=$titleErr=$yearErr="";
@@ -75,6 +76,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
+#if no error
 if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
@@ -90,12 +92,15 @@ $isbn = $_POST['isbn'];
 $title = $_POST['title'];
 $year = $_POST['year'];
 
+#Check to see if the book wanted to add exists
 $existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
     if(mysql_fetch_assoc($existbook)){
       die('book existed<br>
         <nav><a href="index.php">Back to main menu</a></nav>
         ');
     }
+
+#add the book to the database
 $sql = mysql_query("INSERT INTO $name(isbn,title,year) VALUES('$isbn','$title','$year')") or die("Erreur SQL : $sql<br/>".mysql_error());
 
 echo "book added<br>";

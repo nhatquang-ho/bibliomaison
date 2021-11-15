@@ -23,7 +23,7 @@ if (!$db_selected) {
    die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
 }
 
-
+#get the book via isbn and delete it
 $isbn=$_GET['isbn'];
 $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die("Erreur SQL : $sql<br/>".mysql_error());
 

@@ -22,9 +22,11 @@ if (!$db_selected) {
    die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
 }
 
+#check if it's the default account
 if ($name == 'tipou'){
     echo "you can not delete the default account<br>";
 }
+#delete this account
 else{
     $deltab= mysql_query("DROP TABLE $name") or die("Erreur SQL : $sql<br/>".mysql_error());
     $dellogin=mysql_query("DELETE FROM login_user WHERE user_name='$name'") or die("Erreur SQL : $sql<br/>".mysql_error());

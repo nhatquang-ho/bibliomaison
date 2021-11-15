@@ -6,10 +6,12 @@ $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
 $message="";
+#Connect to the database
 if(isset($_POST['submit'])) {
  $con = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS'],$_ENV['DB_NAME']) or die('Unable To connect');
 $db_selected = mysql_select_db($_ENV['DB_NAME'], $con) or die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
 
+#Check if username and password are correct
 $result = mysql_query("SELECT * FROM login_user WHERE user_name='" . $_POST["user_name"] . "' and password = '". $_POST["password"]."'") or die("Erreur SQL : $query<br/>".mysql_error());
 $row  = mysql_fetch_array($result);
 if(is_array($row)) {
@@ -30,6 +32,7 @@ header("Location:index.php");
 </head>
 <body>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+
 <form name="frmUser" method="post" action="" align="center">
 <div class="error"><?php if($message!="") { echo $message; } ?></div>
 <h3 align="center">Enter Login Details</h3>

@@ -15,6 +15,8 @@ session_start();
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
 
+
+#Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
     $nameErr = "Name is required";
@@ -91,6 +93,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
+#Send report
 if (isset($_POST['submit'])) {
     ini_set("SMTP",$_ENV['SMTP_URL']);
     ini_set("smtp_port",$_ENV['SMTP_PORT']);

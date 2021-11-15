@@ -24,6 +24,7 @@ if (!$db_selected) {
    die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
 }
 
+#search and delete all books
 $result = mysql_query("SELECT isbn,title,year FROM $name") or die("Erreur SQL : $sql<br/>".mysql_error());
 while ($row = mysql_fetch_assoc($result)) {
   $isbn=$row["isbn"];

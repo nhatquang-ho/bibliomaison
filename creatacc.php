@@ -10,6 +10,7 @@
 $name = $usrname = $pwd = "";
 $nameErr = $usrnameErr = $pwdErr = "";
 
+#Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $name = $usrname = $pwd = "";
 $nameErr = $usrnameErr = $pwdErr = "";
