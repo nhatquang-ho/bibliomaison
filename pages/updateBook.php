@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="mainpage.css">
+  <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
   <title>UPDATE_BOOK</title>
 </head>
 <body>
@@ -27,8 +27,8 @@ $name=$_SESSION["username"];
 
 <?php
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 #Connect to the database
@@ -57,7 +57,7 @@ mysql_close($link);
 }
 ?>
 
-  <nav><a href="index.php">Back to main menu</a></nav>
+  <nav><a href="../index.php">Back to main menu</a></nav>
 
 <?php
 }else{

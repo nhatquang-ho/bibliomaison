@@ -5,7 +5,7 @@ session_start();
 <html>
 <head>
 <title>REPORT</title>
-<link rel="stylesheet" type="text/css" href="mainpage.css">
+<link rel="stylesheet" type="text/css" href="../css/mainpage.css">
 </head>
 <body>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
@@ -89,8 +89,8 @@ Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" tit
 
 <?php
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 #Send report
@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
   }
 ?>
 
-    <nav><a href="index.php">Back to main menu</a></nav>
+    <nav><a href="../index.php">Back to main menu</a></nav>
 
 <?php
 }else{

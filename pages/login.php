@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 $message="";
@@ -22,13 +22,13 @@ $message = "Invalid Username or Password!";
 }
 }
 if(isset($_SESSION["name"])) {
-header("Location:index.php");
+header("Location:../index.php");
 }
 ?>
 <html>
 <head>
 <title>User Login</title>
-<link rel="stylesheet" type="text/css" href="mainpage.css">
+<link rel="stylesheet" type="text/css" href="../css/mainpage.css">
 </head>
 <body>
 <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>

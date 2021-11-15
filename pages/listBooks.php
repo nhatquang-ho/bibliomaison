@@ -3,7 +3,7 @@ session_start();
 ?>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="mainpage.css">
+    <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
     <title>YOUR BOOKS</title>
   </head>
   <body>
@@ -24,8 +24,8 @@ $name=$_SESSION["username"];
 
 <?php
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 #Connect to database
@@ -111,7 +111,7 @@ if (mysql_num_rows($result)>0) {
 mysql_close($link);
 ?>
     <br>
-    <nav><a href="index.php">Back to main menu</a></nav>
+    <nav><a href="../index.php">Back to main menu</a></nav>
 
 <?php
 }else{
