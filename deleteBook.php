@@ -23,7 +23,7 @@ if (!$db_selected) {
    die ('Impossible de sélectionner la base de données : <br>' . mysql_error());
 }
 
-
+#get the book via isbn and delete it
 $isbn=$_GET['isbn'];
 $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die("Erreur SQL : $sql<br/>".mysql_error());
 
@@ -33,7 +33,13 @@ echo '<a href="/listBooks.php">return</a><br>';
 echo '<nav><a href="index.php">Back to main menu</a></nav>';
 
 ?>
+
 <?php
-}else echo '<h1>Please <a href="login.php">click here</a> to login</h1>';
+}else{
+?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+<h1>Please <a href="login.php">click here</a> to login</h1>
+<?php
+} 
 ?>
 

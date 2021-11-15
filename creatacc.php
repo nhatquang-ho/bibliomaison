@@ -1,18 +1,16 @@
-<!DOCTYPE HTML>
 <html>
 <head>
-<style>
-.error {color: #FF0000;}
-</style>
+<link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
-
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
 
 $name = $usrname = $pwd = "";
 $nameErr = $usrnameErr = $pwdErr = "";
 
+#Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $name = $usrname = $pwd = "";
 $nameErr = $usrnameErr = $pwdErr = "";

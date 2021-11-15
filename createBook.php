@@ -1,16 +1,13 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
   <title>ADD BOOK</title>
-<style>
-.error {color: #FF0000;}
-</style>
+  <link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 <?php
 if($_SESSION["name"]) {
 $name=$_SESSION["username"];
@@ -20,6 +17,7 @@ $name=$_SESSION["username"];
 $isbn=$title=$year="";
 $isbnErr=$titleErr=$yearErr="";
 
+#set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $isbn=$title=$year="";
 $isbnErr=$titleErr=$yearErr="";
@@ -78,6 +76,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
+#if no error
 if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
@@ -93,12 +92,15 @@ $isbn = $_POST['isbn'];
 $title = $_POST['title'];
 $year = $_POST['year'];
 
+#Check to see if the book wanted to add exists
 $existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
     if(mysql_fetch_assoc($existbook)){
       die('book existed<br>
         <nav><a href="index.php">Back to main menu</a></nav>
         ');
     }
+
+#add the book to the database
 $sql = mysql_query("INSERT INTO $name(isbn,title,year) VALUES('$isbn','$title','$year')") or die("Erreur SQL : $sql<br/>".mysql_error());
 
 echo "book added<br>";
@@ -108,8 +110,13 @@ mysql_close($link);
 ?>
 
     <nav><a href="index.php">Back to main menu</a></nav>
+    <?php
+}else{
+?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+<h1>Please <a href="login.php">click here</a> to login</h1>
 <?php
-}else echo '<h1>Please <a href="login.php">click here</a> to login</h1>';
+} 
 ?>
 </body>
 </html>

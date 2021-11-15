@@ -2,21 +2,21 @@
 session_start();
 ?>
 
-<!DOCTYPE HTML>
 <html>
 <head>
 <title>REPORT</title>
-<style>
-.error {color: #FF0000;}
-</style>
+<link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
 
+
+#Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
     $nameErr = "Name is required";
@@ -93,6 +93,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
+#Send report
 if (isset($_POST['submit'])) {
     ini_set("SMTP",$_ENV['SMTP_URL']);
     ini_set("smtp_port",$_ENV['SMTP_PORT']);
@@ -123,8 +124,15 @@ if (isset($_POST['submit'])) {
 ?>
 
     <nav><a href="index.php">Back to main menu</a></nav>
+
 <?php
-}else echo '<h1>Please <a href="login.php">click here</a> to login</h1>';
+}else{
 ?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+<h1>Please <a href="login.php">click here</a> to login</h1>
+<?php
+} 
+?>
+
 </body>
 </html>

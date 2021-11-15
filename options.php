@@ -4,8 +4,10 @@ session_start();
 <html>
 <head>
 <title>OPTIONS</title>
+<link rel="stylesheet" type="text/css" href="mainpage.css">
 </head>
 <body>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 <?php
 if($_SESSION["name"]) {
 ?>
@@ -32,7 +34,12 @@ if($_SESSION["name"]) {
 
 
 <?php
-}else echo '<h1>Please <a href="login.php">click here</a> to login</h1>';
+}else{
+?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+<h1>Please <a href="login.php">click here</a> to login</h1>
+<?php
+} 
 ?>
 
 </body>

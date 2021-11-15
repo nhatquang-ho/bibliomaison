@@ -2,12 +2,14 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html xmlns="https://www.w3schools.com/php" xml:lang="en" lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="mainpage.css">
   <title>UPDATE_BOOK</title>
 </head>
 <body>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+
 <?php
 if($_SESSION["name"]) {
 $name=$_SESSION["username"];
@@ -29,6 +31,7 @@ include 'loadenv.php';
 $dotenv = new DotEnv('.env');
 $loadvars = $dotenv->load();
 
+#Connect to the database
 if(isset($_POST['updbook'])){
     $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
 if (!$link) {
@@ -44,7 +47,7 @@ $isbn = $_POST['isbn'];
 $title = $_POST['title'];
 $year = $_POST['year'];
 
-
+#get the book via isbn and update its information
 $sql=mysql_query("UPDATE $name SET title='$title', year='$year' WHERE isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
 
 
@@ -55,8 +58,15 @@ mysql_close($link);
 ?>
 
   <nav><a href="index.php">Back to main menu</a></nav>
+
 <?php
-}else echo '<h1>Please <a href="login.php">click here</a> to login</h1>';
+}else{
 ?>
+<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+<h1>Please <a href="login.php">click here</a> to login</h1>
+<?php
+} 
+?>
+
 </body>
 </html>

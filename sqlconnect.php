@@ -1,4 +1,5 @@
 <?php
+#test database connection
 
 include 'loadenv.php';
 $dotenv = new DotEnv('.env');
