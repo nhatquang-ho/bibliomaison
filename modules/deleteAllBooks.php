@@ -37,8 +37,6 @@ echo '<script>console.log("All books deleted")</script>';
 echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/listBooks.php"} , 0);</script>';
 ?>
 
-
-
 <?php
 }else{
 ?>

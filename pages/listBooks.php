@@ -2,25 +2,29 @@
 session_start();
 ?>
 <html>
-  <head>
+
+<head>
     <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
     <title>YOUR BOOKS</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+
 <?php
 if($_SESSION["name"]) {
 $name=$_SESSION["username"];
 ?>
-  Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
+
+    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
     <h1>Public Library: List all books</h1>
 
-<form action="" method="post">
-<input type="text" name="isbn">
-<input type="submit" name="search_isbn" value="Search book isbn">
-<input type="text" name="title">
-<input type="submit" name="search_name" value="Search book name">
-</form>
+    <form action="" method="post">
+        <input type="text" name="isbn">
+        <input type="submit" name="search_isbn" value="Search book isbn">
+        <input type="text" name="title">
+        <input type="submit" name="search_name" value="Search book name">
+    </form>
 
 
 
@@ -116,24 +120,25 @@ else {
 mysql_close($link);
 ?>
 
-<br>
-<a href="createBook.php"><button type="button">Add a new book</button></a>
-<a href="../modules/deleteAllBooks.php" onclick="return clicked()"><button type="button">Delete all books</button></a>
-<br><br>
-<nav><a href="../index.php">Back to main menu</a></nav>
+    <br>
+    <a href="createBook.php"><button type="button">Add a new book</button></a>
+    <a href="../modules/deleteAllBooks.php" onclick="return clicked()"><button type="button">Delete all
+            books</button></a>
+    <br><br>
+    <nav><a href="../index.php">Back to main menu</a></nav>
 
-<script type="text/javascript">
+    <script type="text/javascript">
     function clicked() {
-       if (confirm('Do you want to delete all books?')) {
-           return true;
-       } else {
-           return false;
-       }
+        if (confirm('Do you want to delete all books?')) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
-</script>
+    </script>
 
 </body>
+
 </html>
 
 <?php
