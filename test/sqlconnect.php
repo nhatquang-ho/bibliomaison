@@ -1,12 +1,12 @@
 <?php
 #test database connection
 
-include 'loadenv.php';
-$dotenv = new DotEnv('.env');
+include '../modules/loadenv.php';
+$dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
-if($link) echo 'good';
+if($link) echo 'OK';
 if (!$link) {
     die('Connexion impossible : ' . mysql_error());
 }
