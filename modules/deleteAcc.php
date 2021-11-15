@@ -33,7 +33,7 @@ else{
 
     echo "your account is succesfully deleted<br>";
     echo '<nav><a href="../index.php">Back to main menu</a></nav>';
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="logout.php"} , 3000);</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="../pages/logout.php"} , 3000);</script>';
 }
 
 ?>
