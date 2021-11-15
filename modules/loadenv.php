@@ -34,12 +34,8 @@ class DotEnv
             list($name, $value) = explode('=', $line, 2);
             $name = trim($name);
             $value = trim($value);
-            #echo $name;
-            #echo $value;
 
-            #putenv(sprintf('%s=%s', $name, $value));
             $_ENV[$name] = $value;
-            #$_SERVER[$name] = $value;
         }
     }
 }
