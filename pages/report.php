@@ -17,32 +17,10 @@ if($_SESSION["name"]) {
 $name=$_SESSION["name"];
 ?>
 
-    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a><br><br>
-
-    <h2>Please enter the information below</h2>
-    <p><span class="error">* required field</span></p>
-    <form method="post" action="">
-        Name: <input type="text" name="name">
-        <span class="error">* <?php echo $nameErr;?></span>
-        <br><br>
-        E-mail: <input type="text" name="email">
-        <span class="error">* <?php echo $emailErr;?></span>
-        <br><br>
-        Comment: <textarea name="comment" rows="5" cols="40"></textarea>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
-
-    <nav><a href="../index.php">Back to main menu</a></nav>
-
-</body>
-
-</html>
-
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $websiteErr = "";
-$name = $email = $comment = $website = "";
+$nameErr = $emailErr = "";
+$name = $email = $comment = "";
 
 #Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -60,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emailErr = "Email is required";
   } else {
     $email = $_POST["email"];
-    if (!preg_match("^[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\\.[a-z][a-z]+$",$email)) {
+    if (!preg_match("/^[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\\.[a-z][a-z]+$/",$email)) {
       $emailErr = "email invalid";
     }
   }
@@ -74,6 +52,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
+
+    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a><br><br>
+
+    <h2>Please enter the information below</h2>
+    <p><span class="error">* required field</span></p>
+    <form method="post" action="">
+        Name: <input type="text" name="name">
+        <span class="error">* <?php echo $nameErr;?></span>
+        <br><br>
+        E-mail: <input type="text" name="email">
+        <span class="error">* <?php echo $emailErr;?></span>
+        <br><br>
+        Comment: <textarea name="comment" rows="5" cols="40"></textarea>
+        <br><br>
+        <input type="submit" name="submit" value="Send">
+    </form>
+
+    <nav><a href="../index.php">Back to main menu</a></nav>
+
+</body>
+
+</html>
+
 <?php
 
 include '../modules/loadenv.php';
@@ -81,7 +82,7 @@ $dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 #Send report
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && $nameErr=="" && $emailErr == "") {
     ini_set("SMTP",$_ENV['SMTP_URL']);
     ini_set("smtp_port",$_ENV['SMTP_PORT']);
     $passage_ligne = "\r\n";
