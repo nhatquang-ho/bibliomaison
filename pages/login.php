@@ -47,7 +47,9 @@ if(isset($_SESSION["name"])) {
         <input type="text" name="user_name">
         <br>
         Password:<br>
-        <input type="password" name="password">
+        <input type="password" name="password" id="myPassword">
+        <br>
+        <input type="checkbox" onclick="myFunction()">Show Password
         <br><br>
         <input type="submit" name="submit" value="Submit">
         <a href="creatacc.php"><button type="button">Create your account</button></a>
@@ -55,6 +57,17 @@ if(isset($_SESSION["name"])) {
     <center>
         <p>default account - tipou:tipou</p>
     </center>
+    
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
