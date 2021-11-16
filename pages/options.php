@@ -9,17 +9,18 @@ session_start();
 </head>
 
 <body>
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
 if($_SESSION["name"]) {
 ?>
+    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
 
     <h1>PARAMETERS</h1>
     <menu>
         <li><a href="../modules/deleteAcc.php" onclick="return clicked()"><button type="button">Delete your
                     account!</button></a></li>
-        <li><a href="#"><button type="button">Change your password</button></a></li>
+        <li><a href="../pages/password.php"><button type="button">Change your password</button></a></li>
     </menu>
 
     <nav><a href="../index.php">Back to main menu</a></nav>
@@ -36,7 +37,7 @@ if($_SESSION["name"]) {
     </script>
 
 
-    <?php
+<?php
 }else{
 ?>
     <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>

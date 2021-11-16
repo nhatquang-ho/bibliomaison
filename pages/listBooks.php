@@ -13,7 +13,7 @@ session_start();
 
 <?php
 if($_SESSION["name"]) {
-$name=$_SESSION["username"];
+  $name=$_SESSION["username"];
 ?>
 
     Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>

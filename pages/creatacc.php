@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
     $nameErr = "Name is required";
   } else {
-    $name = test_input($_POST["name"]);
+    $name = $_POST["name"];
     // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed";
@@ -29,37 +29,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usrnameErr = "Username is required";
   } else {
     $usrname = $_POST["username"];
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z]*$/",$usrname)) {
-      $usrnameErr = "Only letters allowed";
+    // check if username only contains letters and numbers
+    if (!preg_match("/^[a-zA-Z0-9]*$/",$usrname)) {
+      $usrnameErr = "Only letters and numbers allowed";
     }
   }
   if (empty($_POST["password"])) {
     $pwdErr = "Password is required";
   } else {
-    $pwd = test_input($_POST["password"]);
-    // check if name only contains letters and whitespace
-    if (preg_match("/\s/",$usrname)) {
+    $pwd = $_POST["password"];
+    // check if password content no space
+    if (preg_match("/\s/",$pwd)) {
       $pwdErr = "no space allowed";
     }
   }
 }
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+
 ?>
 
     <h1>Fill the form below to create your account test</h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
-        <label>Name: <input name="name" /></label>
+        <label>Name: <input type="text" name="name" /></label>
         <span class="error">* <?php echo $nameErr;?></span><br><br>
-        <label>Username: <input name="username" /></label>
+        <label>Username: <input type="text" name="username" /></label>
         <span class="error">* <?php echo $usrnameErr;?></span><br><br>
-        <label>Password: <input name="password" /></label>
+        <label>Password: <input type="password" name="password" /></label>
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
         <p><button type="submit" name="creatacc" value="submit">Submit</button></p>
     </form>

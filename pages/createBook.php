@@ -26,30 +26,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $yearErr = "Year is required";
   } else {
     $year = $_POST["year"];
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^(19[0-9][0-9]|20(0[0-9]|10))$/",$year)) {
-      $yearErr = "incorrect year";
-      echo $yearErr;
+    // check year valid
+    if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1000) {
+      $yearErr = "incorrect year (1000 - ". date("Y") ." allowed)";
     }
   }
   if (empty($_POST["isbn"])) {
     $isbnErr = "ISBN is required";
   } else {
     $isbn = $_POST["isbn"];
-    // check if name only contains letters and whitespace
+    // check isbn valid
     if (!preg_match("/^[a-zA-Z0-9]*$/",$isbn)) {
       $isbnErr = "incorrect isbn";
-      echo $isbnErr;
     }
   }
   if (empty($_POST["title"])) {
     $titleErr = "Title is required";
-  } else {
-    $title = $_POST["title"];
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z0-9 ]*$/",$title)) {
-      $titleErr = "incorrect title";
-    }
   }
 }
 ?>
@@ -58,13 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
     <h1>Public Library: Create a new book:</h1>
     <form method="post" action="">
-        <label>ISBN: <input name="isbn" /></label>
+        <label>ISBN: <input type="text" name="isbn" /></label>
         <span class="error">* <?php echo $isbnErr;?></span>
         <br><br>
-        <label>Title: <input name="title" /></label>
+        <label>Title: <input type="text" name="title" /></label>
         <span class="error">* <?php echo $titleErr;?></span>
         <br><br>
-        <label>Year: <input name="year" /></label>
+        <label>Year: <input type="text" name="year" /></label>
         <span class="error">* <?php echo $yearErr;?></span>
         <br><br>
         <button type="submit" name="creatbook" value="submit">Save</button><br>

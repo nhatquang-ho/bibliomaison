@@ -1,3 +1,22 @@
+/*body*/
+body {
+  background-color: #d9fbff;
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+footer {
+  font-size: small;
+}
+
+input[type=submit], input[type=text], input[type=password] {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 10px;
+}
+
+
+
 .text-right {
   text-transform:uppercase;
   font-weight:bold;    
@@ -13,18 +32,8 @@
   color: #FF0000;
 }
 
-body {
-  background-color: #d9fbff;
-  font-family: 'Courier New', Courier, monospace;
-  margin-left: 200px;
-  margin-right: 200px;
-}
 
-button {
-  font-family: 'Courier New', Courier, monospace;
-  padding: 10px;
-}
-
+/*table*/
 table {
   border: black 1px solid;
   border-collapse: collapse;
@@ -42,7 +51,8 @@ tr td {
   text-align: center;
 }
 
-
-footer {
-  font-size: small;
+/*button*/
+button {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 10px;
 }
