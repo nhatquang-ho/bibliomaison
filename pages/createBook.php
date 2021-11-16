@@ -58,13 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
     <h1>Public Library: Create a new book:</h1>
     <form method="post" action="">
-        <label>ISBN: <input name="isbn" /></label>
+        <label>ISBN: <input type="text" name="isbn" /></label>
         <span class="error">* <?php echo $isbnErr;?></span>
         <br><br>
-        <label>Title: <input name="title" /></label>
+        <label>Title: <input type="text" name="title" /></label>
         <span class="error">* <?php echo $titleErr;?></span>
         <br><br>
-        <label>Year: <input name="year" /></label>
+        <label>Year: <input type="text" name="year" /></label>
         <span class="error">* <?php echo $yearErr;?></span>
         <br><br>
         <button type="submit" name="creatbook" value="submit">Save</button><br>

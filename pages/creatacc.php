@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usrnameErr = "Username is required";
   } else {
     $usrname = $_POST["username"];
-    // check if name only contains letters and whitespace
+    // check if username only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z]*$/",$usrname)) {
       $usrnameErr = "Only letters allowed";
     }
@@ -37,9 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["password"])) {
     $pwdErr = "Password is required";
   } else {
-    $pwd = test_input($_POST["password"]);
-    // check if name only contains letters and whitespace
-    if (preg_match("/\s/",$usrname)) {
+    $pwd = $_POST["password"];
+    // check if password only contains letters and whitespace
+    if (preg_match("/\s/",$pwd)) {
       $pwdErr = "no space allowed";
     }
   }
@@ -55,11 +55,11 @@ function test_input($data) {
     <h1>Fill the form below to create your account test</h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
-        <label>Name: <input name="name" /></label>
+        <label>Name: <input type="text" name="name" /></label>
         <span class="error">* <?php echo $nameErr;?></span><br><br>
-        <label>Username: <input name="username" /></label>
+        <label>Username: <input type="text" name="username" /></label>
         <span class="error">* <?php echo $usrnameErr;?></span><br><br>
-        <label>Password: <input name="password" /></label>
+        <label>Password: <input type="password" name="password" /></label>
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
         <p><button type="submit" name="creatacc" value="submit">Submit</button></p>
     </form>
