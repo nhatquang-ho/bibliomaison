@@ -26,30 +26,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $yearErr = "Year is required";
   } else {
     $year = $_POST["year"];
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^(19[0-9][0-9]|20(0[0-9]|10))$/",$year)) {
-      $yearErr = "incorrect year";
-      echo $yearErr;
+    // check year valid
+    if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1000) {
+      $yearErr = "incorrect year (1000 - ". date("Y") ." allowed)";
     }
   }
   if (empty($_POST["isbn"])) {
     $isbnErr = "ISBN is required";
   } else {
     $isbn = $_POST["isbn"];
-    // check if name only contains letters and whitespace
+    // check isbn valid
     if (!preg_match("/^[a-zA-Z0-9]*$/",$isbn)) {
       $isbnErr = "incorrect isbn";
-      echo $isbnErr;
     }
   }
   if (empty($_POST["title"])) {
     $titleErr = "Title is required";
-  } else {
-    $title = $_POST["title"];
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z0-9 ]*$/",$title)) {
-      $titleErr = "incorrect title";
-    }
   }
 }
 ?>

@@ -17,15 +17,37 @@ if($_SESSION["name"]) {
 $name=$_SESSION["username"];
 ?>
 
+<?php
+#set conditions for input values
+$year="";
+$yearErr="";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $isbn=$title=$year="";
+  $isbnErr=$titleErr=$yearErr="";
+  if (!empty($_POST["year"])) {
+    $year = $_POST["year"];
+    // check year valid
+    if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1000) {
+      $yearErr = "incorrect year (1000 - ". date("Y") ." allowed)";
+    }
+  }
+}
+?>
+
     Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
     <h1>Public Library: Update a book record</h1>
     <form method="post" action="">
-        <p><label>ISBN: <input name="isbn" readonly="readonly" value="<?php echo $_GET['isbn']; ?>" /></label></p>
-        <p><label>Title: <input name="title" value="<?php echo $_GET['title']; ?>" /></label></p>
-        <p><label>Year: <input name="year" value="<?php echo $_GET['year']; ?>" /></label></p>
-        <p><button type="submit" name="updbook" value="submit">Save Changes</button></p>
+        <label>ISBN: <input type="text" name="isbn" readonly="readonly" value="<?php echo $_GET['isbn']; ?>" /></label>
+        <br><br>
+        <label>Title: <input type="text" name="title" value="<?php echo $_GET['title']; ?>" /></label>
+        <br><br>
+        <label>Year: <input type="text" name="year" value="<?php echo $_GET['year']; ?>" /></label>
+        <span class="error"><?php echo $yearErr;?></span>
+        <br><br>
+        <button type="submit" name="updbook" value="submit">Save Changes</button>
     </form>
 
+    <br>
     <nav><a href="../index.php">Back to main menu</a></nav>
 
 </body>
@@ -40,7 +62,7 @@ $dotenv = new DotEnv('../.env');
 $loadvars = $dotenv->load();
 
 #Connect to the database
-if(isset($_POST['updbook'])){
+if(isset($_POST['updbook']) && $yearErr==""){
   $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
   if (!$link) {
     die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');

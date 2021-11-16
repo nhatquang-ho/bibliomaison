@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pwdErr = "New password is required";
     } else {
         $pwd = $_POST["password"];
-        // check if password only contains letters and whitespace
+        // check if password valid
         if (preg_match("/\s/",$pwd)) {
             $pwdErr = "no space allowed";
         }

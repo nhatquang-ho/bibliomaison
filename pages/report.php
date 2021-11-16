@@ -30,12 +30,6 @@ $name=$_SESSION["name"];
         <br><br>
         Comment: <textarea name="comment" rows="5" cols="40"></textarea>
         <br><br>
-        Gender:
-        <input type="radio" name="gender" value="female">Female
-        <input type="radio" name="gender" value="male">Male
-        <input type="radio" name="gender" value="other">Other
-        <span class="error">* <?php echo $genderErr;?></span>
-        <br><br>
         <input type="submit" name="submit" value="Submit">
     </form>
 
@@ -47,15 +41,15 @@ $name=$_SESSION["name"];
 
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
+$nameErr = $emailErr = $websiteErr = "";
+$name = $email = $comment = $website = "";
 
 #Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
     $nameErr = "Name is required";
   } else {
-    $name = test_input($_POST["name"]);
+    $name = $_POST["name"];
     // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed";
@@ -65,28 +59,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["email"])) {
     $emailErr = "Email is required";
   } else {
-    $email = test_input($_POST["email"]);
+    $email = $_POST["email"];
+    if (!preg_match("^[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\\.[a-z][a-z]+$",$email)) {
+      $emailErr = "email invalid";
+    }
   }
 
   if (empty($_POST["comment"])) {
     $comment = "";
   } else {
-    $comment = test_input($_POST["comment"]);
-  }
-
-  if (empty($_POST["gender"])) {
-    $genderErr = "Gender is required";
-  } else {
-    $gender = test_input($_POST["gender"]);
+    $comment = $_POST["comment"];
   }
 }
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
 ?>
 
 <?php
@@ -102,9 +87,7 @@ if (isset($_POST['submit'])) {
     $passage_ligne = "\r\n";
     $to = $_ENV['SMTP_TO'];
 
-    $gender = $POST['gender'];
-
-    $subject = $_POST['name'] . ' - ' . $_POST['gender'];
+    $subject = $_POST['name'] . ' feedback ';
 
     $from = $_POST['email'];
 
@@ -112,7 +95,7 @@ if (isset($_POST['submit'])) {
 
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From:' . $from . ' - ' . $gender . "\r\n";
+    $headers .= 'From:' . $from . "\r\n";
     $headers .= 'Cc: '.$_ENV['CC_MAIL_1'].', '.$_ENV['CC_MAIL_2'] . "\r\n";
     $headers .= 'Bcc: '.$_ENV['BCC_MAIL']. "\r\n";
 
