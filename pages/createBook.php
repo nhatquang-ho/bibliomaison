@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <h1>Public Library: Create a new book:</h1>
+    <p><span class="error">* required field</span></p>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" /></label>
         <span class="error">* <?php echo $isbnErr;?></span>

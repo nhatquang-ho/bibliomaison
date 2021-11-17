@@ -92,8 +92,8 @@ if (isset($_POST['submit']) && $nameErr=="" && $emailErr == "") {
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     $headers .= 'From:' . $_ENV['FROM_NOREPLY'] . "\r\n";
-    $headers .= 'Cc: '.$_ENV['CC_MAIL_1'].', '.$_ENV['CC_MAIL_2'] . "\r\n";
-    $headers .= 'Bcc: '.$_ENV['BCC_MAIL']. "\r\n";
+    $headers .= 'Cc: ' . $_ENV['CC_MAIL_1'] . ', '.$_ENV['CC_MAIL_2'] . "\r\n";
+    $headers .= 'Bcc: ' . $_ENV['BCC_MAIL'] . "\r\n";
 
     if (mail($to, $subject, $message, $headers)) {
       echo '<script>
