@@ -26,14 +26,18 @@ include "include/header.php";
       <li><a href="pages/listBooks.php"><button type="button">List all books</button></a></li>
     </menu>
 
+</body>
+
 <?php
 include "include/footer.php";
 ?>
+
+</html>
+
 
 <?php
 }else{
 include "include/start_page.php";
 } 
 ?>
-</body>
-</html>
+
