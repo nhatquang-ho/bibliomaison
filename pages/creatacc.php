@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $usrname = $_POST["username"];
     // check if username only contains letters and numbers
-    if (!preg_match("/^[a-zA-Z0-9]*$/",$usrname) && strlen($usrname) >= 6 && strlen($usrname) <= 30 ) {
+    if (!preg_match("/^[a-zA-Z0-9]*$/",$usrname) || strlen($usrname) < 6 || strlen($usrname) > 30 ) {
       $usrnameErr = "Only letters and numbers allowed, must be 6 to 30 characters";
     }
   }

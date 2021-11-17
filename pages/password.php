@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $pwd = $_POST["password"];
         // check if password valid
-        if (preg_match("/\s/",$pwd)) {
-            $pwdErr = "no space allowed";
+        if (preg_match("/\s/",$pwd) || strlen($pwd) < 6 || strlen($pwd) > 30) {
+            $pwdErr = "no space allowed, must be 6 to 30 characters";
         }
     }
     if (empty($_POST["re_password"])) {
