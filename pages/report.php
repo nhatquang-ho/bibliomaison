@@ -12,10 +12,6 @@ session_start();
 <body>
     <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
-<?php
-if($_SESSION["name"]) {
-$name=$_SESSION["name"];
-?>
 
 <?php
 // define variables and set to empty values
@@ -51,9 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-
-    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a><br><br>
 
     <h2>Please enter the information below</h2>
     <p><span class="error">* required field</span></p>
@@ -113,13 +106,4 @@ if (isset($_POST['submit']) && $nameErr=="" && $emailErr == "") {
             </script>';
     }
   }
-?>
-
-<?php
-}else{
-?>
-<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-<h1>Please <a href="login.php">click here</a> to login</h1>
-<?php
-} 
 ?>

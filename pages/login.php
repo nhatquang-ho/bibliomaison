@@ -70,4 +70,8 @@ if(isset($_SESSION["name"])) {
     </script>
 </body>
 
+<?php
+include "../include/footer.php";
+?>
+
 </html>
