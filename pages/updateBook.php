@@ -10,11 +10,14 @@ session_start();
 </head>
 
 <body>
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
 if($_SESSION["name"]) {
 $name=$_SESSION["username"];
+?>
+
+<?php
+include "../include/header.php";
 ?>
 
 <?php
@@ -34,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
     <h1>Public Library: Update a book record</h1>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" readonly="readonly" value="<?php echo $_GET['isbn']; ?>" /></label>
@@ -51,6 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav><a href="../index.php">Back to main menu</a></nav>
 
 </body>
+
+<?php
+include "../include/footer.php";
+?>
 
 </html>
 
@@ -89,9 +95,6 @@ if(isset($_POST['updbook']) && $yearErr==""){
 
 <?php
 }else{
-?>
-<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-<h1>Please <a href="login.php">click here</a> to login</h1>
-<?php
+include "../include/start_page.php";
 } 
 ?>

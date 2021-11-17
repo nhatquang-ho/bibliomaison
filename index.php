@@ -11,8 +11,11 @@ session_start();
 <?php
 if($_SESSION["name"]) {
 ?>
-<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="pages/logout.php" title="Logout">Logout.</a><br>
+
+<?php
+include "include/header.php";
+?>
+
 <a href="pages/options.php"><button type="button">Parameters</button></a>
   <hgroup>
    <h1>Home library</h1>
@@ -23,20 +26,18 @@ Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="pages/logout.ph
       <li><a href="pages/listBooks.php"><button type="button">List all books</button></a></li>
     </menu>
 
-    <footer>
-     <hr />
-     <div>Created in 2020</div>
-     <a href="pages/report.php">Report problems</a>
-    </footer>
+</body>
+
+<?php
+include "include/footer.php";
+?>
+
+</html>
 
 
 <?php
 }else{
-?>
-<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-<h1>Please <a href="pages/login.php">click here</a> to login</h1>
-<?php
+include "include/start_page.php";
 } 
 ?>
-</body>
-</html>
+

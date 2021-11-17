@@ -2,12 +2,14 @@
 body {
   background-color: #d9fbff;
   font-family: 'Courier New', Courier, monospace;
+  height: 2000px;
   margin-left: 200px;
   margin-right: 200px;
 }
 
 footer {
   font-size: small;
+  margin-top: 30%;
 }
 
 input[type=submit], input[type=text], input[type=password] {

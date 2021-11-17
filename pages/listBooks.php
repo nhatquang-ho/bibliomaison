@@ -9,14 +9,16 @@ session_start();
 </head>
 
 <body>
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
 <?php
 if($_SESSION["name"]) {
   $name=$_SESSION["username"];
 ?>
 
-    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
+<?php
+include "../include/header.php";
+?>
+
     <h1>Public Library: List all books</h1>
 
     <form action="" method="post">
@@ -139,13 +141,14 @@ mysql_close($link);
 
 </body>
 
+<?php
+include "../include/footer.php";
+?>
+
 </html>
 
 <?php
 }else{
-?>
-<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-<h1>Please <a href="login.php">click here</a> to login</h1>
-<?php
-}
+include "../include/start_page.php";
+} 
 ?>

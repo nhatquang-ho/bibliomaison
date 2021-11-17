@@ -16,7 +16,10 @@ if($_SESSION["name"]) {
 ?>
 
 <?php
+include "../include/header.php";
+?>
 
+<?php
 #Set conditions for input values
 $pwd = $re_pwd = "";
 $pwdErr = "";
@@ -39,10 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-    Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="logout.php" title="Logout">Logout.</a>
 
     <h1>Please enter your new password: </h1>
     <form method="post" action="">
@@ -90,16 +89,17 @@ if(isset($_POST['savepass']) && ($re_pwdErr=="" && $pwdErr=="")){
 }
 ?>
 
+</body>
+
+<?php
+include "../include/footer.php";
+?>
+
+</html>
+
 
 <?php
 }else{
-?>
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-    <h1>Please <a href="login.php">click here</a> to login</h1>
-    <?php
+include "../include/start_page.php";
 } 
 ?>
-
-</body>
-
-</html>
