@@ -78,18 +78,20 @@ $loadvars = $dotenv->load();
 if (isset($_POST['submit']) && $nameErr=="" && $emailErr == "") {
     ini_set("SMTP",$_ENV['SMTP_URL']);
     ini_set("smtp_port",$_ENV['SMTP_PORT']);
-    $passage_ligne = "\r\n";
+    $passage_ligne = "<br>";
     $to = $_ENV['SMTP_TO'];
 
-    $subject = $_POST['name'] . ' feedback ';
+    $subject = $_POST['name'] . ' FEEDBACK ';
 
-    $from = $_POST['email'];
+    $email = $_POST['email'];
 
-    $message = 'This is a message from ' . $from . ':' . $passage_ligne . $passage_ligne . $_POST['comment'];
+    $message = 'From: ' . $_POST['name'] . $passage_ligne
+              . 'Email: ' . $email . $passage_ligne 
+              . $passage_ligne . "Message:" . $passage_ligne . $_POST['comment'];
 
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From:' . $from . "\r\n";
+    $headers .= 'From:' . $_ENV['FROM_NOREPLY'] . "\r\n";
     $headers .= 'Cc: '.$_ENV['CC_MAIL_1'].', '.$_ENV['CC_MAIL_2'] . "\r\n";
     $headers .= 'Bcc: '.$_ENV['BCC_MAIL']. "\r\n";
 
