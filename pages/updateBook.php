@@ -1,11 +1,9 @@
-<?php
-session_start();
-?>
-<!DOCTYPE html>
+<?php include $_SERVER['DOCUMENT_ROOT']."/modules/books/updateBook.php" ?>
+
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
     <title>UPDATE_BOOK</title>
 </head>
 
@@ -13,28 +11,10 @@ session_start();
 
 <?php
 if($_SESSION["name"]) {
-$name=$_SESSION["username"];
 ?>
 
 <?php
-include "../include/header.php";
-?>
-
-<?php
-#set conditions for input values
-$year="";
-$yearErr="";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $isbn=$title=$year="";
-  $isbnErr=$titleErr=$yearErr="";
-  if (!empty($_POST["year"])) {
-    $year = $_POST["year"];
-    // check year valid
-    if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1000) {
-      $yearErr = "incorrect year (1000 - ". date("Y") ." allowed)";
-    }
-  }
-}
+include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 ?>
 
     <h1>Public Library: Update a book record</h1>
@@ -50,51 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <br>
-    <nav><a href="../index.php">Back to main menu</a></nav>
+    <nav><a href="/index.php">Back to main menu</a></nav>
 
 </body>
 
 <?php
-include "../include/footer.php";
+include $_SERVER['DOCUMENT_ROOT']."/include/footer.php";
 ?>
 
 </html>
 
-
-<?php
-
-include '../modules/loadenv.php';
-$dotenv = new DotEnv('../.env');
-$loadvars = $dotenv->load();
-
-#Connect to the database
-if(isset($_POST['updbook']) && $yearErr==""){
-  $link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
-  if (!$link) {
-    die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
-  }
-  
-  $db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
-  if (!$db_selected) {
-    die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
-  }
-
-  $isbn = $_POST['isbn'];
-  $title = $_POST['title'];
-  $year = $_POST['year'];
-
-  #get the book via isbn and update its information
-  $sql=mysql_query("UPDATE $name SET title='$title', year='$year' WHERE isbn='$isbn'") or die("Erreur SQL : $sql<br/>".mysql_error());
-  echo '<script>alert("Your book is successfully updated");</script>';
-  echo '<script>console.log("Book isgn-' . $isbn . ' created")</script>';
-  echo '<script type="text/javascript">setTimeout(function(){window.top.location="listBooks.php"} , 500);</script>';
-
-  mysql_close($link);
-}
-?>
-
 <?php
 }else{
-include "../include/start_page.php";
+include $_SERVER['DOCUMENT_ROOT']."/include/start_page.php";
 } 
 ?>

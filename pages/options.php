@@ -5,31 +5,30 @@ session_start();
 
 <head>
     <title>OPTIONS</title>
-    <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
 </head>
-
-<body>
 
 <?php
 if($_SESSION["name"]) {
 ?>
 
 <?php
-include "../include/header.php";
+include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 ?>
 
+<body>
     <h1>PARAMETERS</h1>
     <menu>
-        <li><a href="../modules/deleteAcc.php" onclick="return clicked()"><button type="button">Delete your
+        <li><a href="/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button type="button">Delete your
                     account!</button></a></li>
-        <li><a href="../pages/password.php"><button type="button">Change your password</button></a></li>
+        <li><a href="/pages/password.php"><button type="button">Change your password</button></a></li>
     </menu>
 
-    <nav><a href="../index.php">Back to main menu</a></nav>
+    <nav><a href="/index.php">Back to main menu</a></nav>
 
 
     <script type="text/javascript">
-    function clicked() {
+    function Confirm() {
         if (confirm('Do you want to delete your account?')) {
             return true;
         } else {
@@ -41,13 +40,13 @@ include "../include/header.php";
 </body>
 
 <?php
-include "../include/footer.php";
+include $_SERVER['DOCUMENT_ROOT']."/include/footer.php";
 ?>
 
 </html>
 
 <?php
 }else{
-include "../include/start_page.php";
+include $_SERVER['DOCUMENT_ROOT']."/include/start_page.php";
 } 
 ?>

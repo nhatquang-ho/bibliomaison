@@ -1,41 +1,11 @@
-<?php
-session_start();
-?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/modules/accounts/logincheck.php" ?>
 
 <html>
 
 <head>
     <title>User Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
 </head>
-
-<?php
-
-include '../modules/loadenv.php';
-$dotenv = new DotEnv('../.env');
-$loadvars = $dotenv->load();
-
-$message="";
-#Connect to the database
-if(isset($_POST['submit'])) {
-   $con = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS'],$_ENV['DB_NAME']) or die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
-   $db_selected = mysql_select_db($_ENV['DB_NAME'], $con) or die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
-
-   #Check if username and password are correct
-   $result = mysql_query("SELECT * FROM login_user WHERE user_name='" . $_POST["user_name"] . "' and password = '". $_POST["password"]."'") or die ('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');;
-   $row  = mysql_fetch_array($result);
-   if(is_array($row)) {
-      $_SESSION["name"] = $row['name'];
-      $_SESSION["username"]=$row['user_name'];
-   } else {
-      $message = "Invalid Username or Password!";
-      echo '<script>console.log("Username or password incorrect")</script>';
-   }
-}
-if(isset($_SESSION["name"])) {
-   echo '<script>window.top.location="../index.php";</script>';
-}
-?>
 
 <body>
     <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
@@ -49,17 +19,17 @@ if(isset($_SESSION["name"])) {
         Password:<br>
         <input type="password" name="password" id="myPassword">
         <br>
-        <input type="checkbox" onclick="myFunction()">Show Password
+        <input type="checkbox" onclick="Show_Hide_Pass()">Show Password
         <br><br>
         <input type="submit" name="submit" value="Submit">
-        <a href="creatacc.php"><button type="button">Create your account</button></a>
+        <a href="/pages/creatAcc.php"><button type="button">Create your account</button></a>
     </form>
     <center>
         <p>default account - tipou:tipou</p>
     </center>
     
     <script>
-        function myFunction() {
+        function Show_Hide_Pass() {
             var x = document.getElementById("myPassword");
             if (x.type === "password") {
                 x.type = "text";
@@ -71,7 +41,7 @@ if(isset($_SESSION["name"])) {
 </body>
 
 <?php
-include "../include/footer.php";
+include $_SERVER['DOCUMENT_ROOT']."/include/footer.php";
 ?>
 
 </html>
