@@ -69,11 +69,16 @@ if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $emailErr ==
         or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
     $creattab = mysql_query("CREATE TABLE $username (
+        num INT NOT NULL,
         isbn VARCHAR(30) NOT NULL,
         title VARCHAR(30) NOT NULL,
-        year YEAR NOT NULL,
+        category VARCHAR(30) NOT NULL,
+        year YEAR,
+        authors VARCHAR(50),
+        summary TEXT,
+        last_modification DATETIME NOT NULL,
         PRIMARY KEY ( `isbn` )
-        )") or die("Erreur SQL : $sql<br/>".mysql_error());
+        )") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     
 
     #send password via email

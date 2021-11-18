@@ -3,8 +3,8 @@
 <html>
 
 <head>
-    <title>CHANGE PASSWORD</title>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
+    <title>CHANGE PASSWORD</title>
 </head>
 
 <?php

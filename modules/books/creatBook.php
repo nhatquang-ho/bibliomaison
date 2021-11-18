@@ -9,18 +9,18 @@ $loadvars = $dotenv->load();
 $name=$_SESSION["username"];
 
 #set conditions for input values
-$isbn=$title=$year="";
+$isbn=$title=$category=$year=$authors=$summary="";
 $isbnErr=$titleErr=$yearErr="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn=$title=$year="";
     $isbnErr=$titleErr=$yearErr="";
     if (empty($_POST["year"])) {
-        $yearErr = "Year is required";
+        $year=NULL;
     } else {
         $year = $_POST["year"];
         // check year valid
-        if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1000) {
-        $yearErr = "incorrect year (1000 - ". date("Y") ." allowed)";
+        if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1900) {
+        $yearErr = "incorrect year (1901 - ". date("Y") ." allowed)";
         }
     }
     if (empty($_POST["isbn"])) {
@@ -34,18 +34,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($_POST["title"])) {
         $titleErr = "Title is required";
+    } else {
+        $title = $_POST["title"];
+    }
+    if (empty($_POST["authors"])) {
+        $authors="";
+    } else {
+        $authors = $_POST["authors"];
+    }
+    if (empty($_POST["summary"])) {
+        $summary="";
+    } else {
+        $summary = $_POST["summary"];
+    }
+    if (empty($_POST["category"])) {
+        $category="Unknown";
+    } else {
+        $category = $_POST["category"];
     }
 }
 
 
+#insert a new book
 if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
     
     include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
-    #insert a new book
-    $isbn = $_POST['isbn'];
-    $title = $_POST['title'];
-    $year = $_POST['year'];
+    #count books
+    $count = mysql_query("SELECT COUNT(*) FROM $name");
+    $count = mysql_fetch_assoc($count);
+    $num = ((int)$count['COUNT(*)'])+1;
+
+    $last_modification = date('Y-m-d H:i:s');
 
     #Check to see if the book wanted to add exists
     $existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
@@ -55,7 +75,7 @@ if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
     }
 
     #add the book to the database
-    $addbook = mysql_query("INSERT INTO $name(isbn,title,year) VALUES('$isbn','$title','$year')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+    $addbook = mysql_query("INSERT INTO $name(num,isbn,title,category,year,authors,summary,last_modification) VALUES('$num','$isbn','$title','$category','$year','$authors','$summary','$last_modification')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
     echo '<script>alert("Your book is successfully added");</script>';
     echo '<script>console.log("Book added")</script>';

@@ -1,2 +1,2 @@
-<a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-Welcome <?php echo $_SESSION["name"]; ?>. Click here to <a href="/pages/logout.php" title="Logout">Logout.</a><br>
+<a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+Welcome <b><?php echo $_SESSION["name"]; ?></b> <button class="button-logout"><a href="/pages/logout.php" title="Logout">LOGOUT</a></button><br>

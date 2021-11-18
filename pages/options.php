@@ -4,8 +4,8 @@ session_start();
 <html>
 
 <head>
-    <title>OPTIONS</title>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
+    <title>PARAMETERS</title>
 </head>
 
 <?php

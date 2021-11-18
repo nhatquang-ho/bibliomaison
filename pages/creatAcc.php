@@ -4,21 +4,22 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
+    <title>SIGN UP</title>
 </head>
 
 <body>
-    <a class="text-right" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
+    <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
     <h1>Fill the form below to create your account test</h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
-        <label>Name: <input type="text" name="name" /></label>
+        <label>Name: <input type="text" name="name" maxlength="30" /></label>
         <span class="error">* <?php echo $nameErr;?></span><br><br>
-        <label>Username: <input type="text" name="username" /></label>
+        <label>Username: <input type="text" name="username" maxlength="30"/></label>
         <span class="error">* <?php echo $usrnameErr;?></span><br><br>
-        <label>Email: <input type="text" name="email" /></label>
+        <label>Email: <input type="text" name="email" maxlength="30" /></label>
         <span class="error">* <?php echo $emailErr;?></span><br><br>
-        <p><button type="submit" name="creatacc" value="submit">Submit</button></p>
+        <input type="submit" name="creatacc" value="Submit"></p>
     </form>
 
     <nav><a href="/pages/login.php">Back to main menu</a></nav>
