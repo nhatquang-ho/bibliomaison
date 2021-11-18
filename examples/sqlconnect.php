@@ -1,21 +1,21 @@
 <?php
 #test database connection
 
-include '../modules/loadenv.php';
-$dotenv = new DotEnv('../.env');
+#load .env
+include $_SERVER['DOCUMENT_ROOT'].'/modules/loadenv.php';
+$dotenv = new DotEnv($_SERVER['DOCUMENT_ROOT'].'/.env');
 $loadvars = $dotenv->load();
 
-$link = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
-if($link) echo 'OK';
-if (!$link) {
-    die('Connexion impossible : ' . mysql_error());
+$connect = mysql_connect($_ENV['DB_URL'], $_ENV['DB_NAME'], $_ENV['DB_PASS']);
+if (!$connect) {
+    die('<script>console.log("Impossible to connect to the database : ")' . mysql_error() . '</script>');
 }
-echo 'Connecte correctement';
 
-$db_selected = mysql_select_db($_ENV['DB_NAME'], $link);
+$db_selected = mysql_select_db($_ENV['DB_NAME'], $connect);
 if (!$db_selected) {
-   die ('Impossible de sélectionner la base de données : ' . mysql_error());
+    die('<script>console.log("Impossible to choose the table : ")' . mysql_error() . '</script>');
 }
-echo 'good';
 
-mysql_close($link);
+echo "OK";
+
+mysql_close($connect);
