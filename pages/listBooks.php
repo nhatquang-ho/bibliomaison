@@ -19,7 +19,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 if($_SESSION["name"]) {
 ?>
 
-    <h1>Public Library: List all books</h1>
+    <h1>List all books in your library</h1>
 
     <form action="" method="post">
         <input type="text" name="isbn">

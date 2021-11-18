@@ -13,23 +13,42 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
 <body>
 
-<?php
+    <?php
 if($_SESSION["name"]) {
 ?>
 
-    <h1>Public Library: Create a new book:</h1>
+    <h1>Add a new book:</h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
-        <label>ISBN: <input type="text" name="isbn" /></label>
+        <label>ISBN: <input type="text" name="isbn" maxlength="30" /></label>
         <span class="error">* <?php echo $isbnErr;?></span>
         <br><br>
-        <label>Title: <input type="text" name="title" /></label>
+        <label>Title: <input type="text" name="title" maxlength="30" /></label>
         <span class="error">* <?php echo $titleErr;?></span>
         <br><br>
-        <label>Year: <input type="text" name="year" /></label>
-        <span class="error">* <?php echo $yearErr;?></span>
+        <label>Category:
+        <select name="category">
+            <option value="">--Choose a category--</option>
+            <option value="Unknown">Unknown</option>
+            <option value="Biographies and Memoirs">Biographies and Memoirs</option>
+            <option value="Literature and Fiction">Literature and Fiction</option>
+            <option value="Children's">Children's</option>
+            <option value="Mystery and Suspense">Mystery and Suspense</option>
+            <option value="Education and Reference">Education and Reference</option>
+            <option value="Religion and Spirituality">Religion and Spirituality</option>
+            <option value="History">History</option>
+            <option value="Other">Other</option>
+        </select>
+        </label>
         <br><br>
-        <button type="submit" name="creatbook" value="submit">Save</button><br>
+        <label>Year: <input type="text" name="year" maxlength="4" /></label>
+        <span class="error"><?php echo $yearErr;?></span>
+        <br><br>
+        <label>Authors: <input type="text" name="authors" maxlength="50" /></label>
+        <br><br>
+        <label>Summary: <input type="text" name="summary" maxlength="200" /></label>
+        <br><br>
+        <input type="submit" name="creatbook" value="Save"><br>
     </form>
 
     <nav><a href="/index.php">Back to main menu</a></nav>
