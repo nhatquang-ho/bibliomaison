@@ -89,3 +89,30 @@ button {
 .github-link:hover {
   text-shadow: rgb(117, 2, 2) 1px 0 10px;
 }
+
+
+
+/*for mobile screen*/
+@media screen and (max-width: 500px) {
+
+  /*body*/
+  body {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  input[type=submit], input[type=text], input[type=password], select {
+    padding: 5px;
+  }
+
+  /*table*/
+  tr th, tr td {
+    padding: 5px
+  }
+
+  /*button*/
+  button {
+    padding: 5px;
+  }
+
+}
