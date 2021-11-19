@@ -1,2 +1,25 @@
 <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
-Welcome <b><?php echo $_SESSION["name"]; ?>  </b><a href="/pages/logout.php"><button class="button-logout" type="button">LOGOUT</button></a><br>
+Welcome <b><?php echo $_SESSION["name"]; ?> </b><a href="/pages/logout.php"><button class="button-logout"
+        type="button">LOGOUT</button></a><br>
+
+<?php
+if ($_SERVER['REQUEST_URI'] != "/pages/options.php"){
+?>
+<a href="/pages/options.php"><input onmouseover="Show_text()" onmouseout="Hide_text()" type="image"
+        src="/assets/images/parameters.png" /></a>
+<span id="hidden-text" class="hidden-text">Parameters</span>
+<?php
+}
+?>
+
+<script>
+function Show_text() {
+    var x = document.getElementById("hidden-text");
+    x.classList.remove("hidden-text");
+}
+
+function Hide_text() {
+    var x = document.getElementById("hidden-text");
+    x.classList.add("hidden-text");
+}
+</script>
