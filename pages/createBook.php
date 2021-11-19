@@ -46,7 +46,7 @@ if($_SESSION["name"]) {
         <br><br>
         <label>Authors: <input type="text" name="authors" maxlength="50" /></label>
         <br><br>
-        <label>Summary: <input type="text" name="summary" maxlength="200" /></label>
+        <label>Summary: <textarea name="summary" rows="5" cols="40" maxlength="200"></textarea></label>
         <br><br>
         <input type="submit" name="creatbook" value="Save"><br>
     </form>

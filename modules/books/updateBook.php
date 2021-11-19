@@ -8,8 +8,20 @@ $loadvars = $dotenv->load();
 
 $name=$_SESSION["username"];
 
+include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
+
+#get the book
+$isbn = $_GET['isbn'];
+$getbook = mysql_query("SELECT title,category,year,authors,summary FROM $name WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+$book = mysql_fetch_assoc($getbook);
+$title = $book['title'];
+$category = $book['category'];
+$year = $book['year'];
+$authors = $book['authors'];
+$summary = $book['summary'];
+
+
 #set conditions for input values
-$year=$title="";
 $yearErr=$titleErr="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn=$title=$year="";
@@ -27,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 if(isset($_POST['updbook']) && $titleErr=="" && $yearErr==""){
-    include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
     $isbn = $_POST['isbn'];
     $title = $_POST['title'];
