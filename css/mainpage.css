@@ -66,8 +66,7 @@ button {
 
 .button-logout {
   font-weight:bold;    
-  color:rgb(2, 37, 196);
-  text-decoration:none;    
+  background-color:rgb(218, 0, 102);
   font-size:12px;
   padding: 2px;
 }
