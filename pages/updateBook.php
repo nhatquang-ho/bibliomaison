@@ -22,7 +22,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" readonly="readonly" value="<?php echo $isbn ?>" /></label>
         <br><br>
-        <label>Title: <input type="text" name="title" value="<?php echo $title; ?>" maxlength="30" /></label>
+        <label>Title: <input type="text" name="title" value="<?php echo $title; ?>" maxlength="50" /></label>
         <span class="error"><?php echo $titleErr;?></span>
         <br><br>
         <label>Category:
@@ -43,9 +43,11 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <label>Year: <input type="text" name="year" value="<?php echo $year; ?>"  maxlength="4" /></label>
         <span class="error"><?php echo $yearErr;?></span>
         <br><br>
+        <label>Edition: <input type="text" name="edition" value="<?php echo $edition; ?>"  maxlength="30" /></label>
+        <br><br>
         <label>Authors: <input type="text" name="authors" value="<?php echo $authors; ?>" maxlength="50" /></label>
         <br><br>
-        <label>Summary: <textarea name="summary" rows="5" cols="40" maxlength="200"><?php echo $summary; ?></textarea></label>
+        <label>Summary: <textarea name="summary" rows="5" cols="40" maxlength="1500"><?php echo $summary; ?></textarea></label>
         <br><br>
         <input type="submit" name="updbook" value="Save Changes">
     </form>

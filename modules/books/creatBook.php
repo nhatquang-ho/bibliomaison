@@ -9,7 +9,7 @@ $loadvars = $dotenv->load();
 $name=$_SESSION["username"];
 
 #set conditions for input values
-$isbn=$title=$category=$year=$authors=$summary="";
+$isbn=$title=$category=$year=$edition=$authors=$summary="";
 $isbnErr=$titleErr=$yearErr="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn=$title=$year="";
@@ -52,6 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $category = $_POST["category"];
     }
+    if (empty($_POST["edition"])) {
+        $edition="";
+    } else {
+        $edition = $_POST["edition"];
+    }
 }
 
 
@@ -75,7 +80,7 @@ if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
     }
 
     #add the book to the database
-    $addbook = mysql_query("INSERT INTO $name(num,isbn,title,category,year,authors,summary,last_modification) VALUES('$num','$isbn','$title','$category','$year','$authors','$summary','$last_modification')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+    $addbook = mysql_query("INSERT INTO $name(num,isbn,title,category,year,edition,authors,summary,last_modification) VALUES('$num','$isbn','$title','$category','$year','$edition','$authors','$summary','$last_modification')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
     echo '<script>alert("Your book is successfully added");</script>';
     echo '<script>console.log("Book added")</script>';

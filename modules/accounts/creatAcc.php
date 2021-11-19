@@ -71,9 +71,10 @@ if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $emailErr ==
     $creattab = mysql_query("CREATE TABLE $username (
         num INT NOT NULL,
         isbn VARCHAR(30) NOT NULL,
-        title VARCHAR(30) NOT NULL,
+        title VARCHAR(50) NOT NULL,
         category VARCHAR(30) NOT NULL,
         year YEAR,
+        edition VARCHAR(30),
         authors VARCHAR(50),
         summary TEXT,
         last_modification DATETIME NOT NULL,
