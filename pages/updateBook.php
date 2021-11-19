@@ -46,7 +46,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <br><br>
         <label>Summary: <input type="text" name="summary" value="<?php echo $_GET['summary']; ?>" maxlength="200" /></label>
         <br><br>
-        <button type="submit" name="updbook" value="submit">Save Changes</button>
+        <input type="submit" name="updbook" value="Save Changes">
     </form>
 
     <br>

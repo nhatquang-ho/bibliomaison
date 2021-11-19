@@ -19,6 +19,11 @@ input[type=submit], input[type=text], input[type=password], select {
 input[type=submit] {
   background-color: rgba(110, 109, 109, 0.897);
   font-weight: bold;
+  cursor:pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgba(170, 170, 170, 0.897);
 }
 
 input:read-only {
@@ -51,10 +56,12 @@ tr td {
   background-color: rgb(255, 222, 182);
 }
 
+
 /*button*/
 button {
   font-family: 'Courier New', Courier, monospace;
   padding: 10px;
+  cursor:pointer;
 }
 
 .button-logout {
@@ -77,4 +84,8 @@ button {
   font-size:12px;
   padding-top: 1px;
   /*text-align:right;*/
+}
+
+.github-link:hover {
+  text-shadow: rgb(117, 2, 2) 1px 0 10px;
 }

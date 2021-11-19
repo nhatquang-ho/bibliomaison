@@ -23,7 +23,8 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
         <label>Re-enter your new password: <input type="password" name="re_password" /></label>
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
-        <button type="submit" name="savepass" value="submit">Save changes</button><br>
+        <input type="submit" name="savepass" value="Save changes">
+        <br>
     </form>
 
     <nav><a href="/index.php">Back to main menu</a></nav>
