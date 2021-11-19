@@ -10,7 +10,7 @@
 <body>
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
-    <h1>Fill the form below to create your account test</h1>
+    <h1>Fill the form below to create your account</h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
         <label>Name: <input type="text" name="name" maxlength="30" /></label>
