@@ -14,6 +14,7 @@ footer {
 input[type=submit], input[type=text], input[type=password], select {
   font-family: 'Courier New', Courier, monospace;
   padding: 10px;
+  border-radius: 10px;
 }
 
 input[type=submit] {
@@ -29,6 +30,10 @@ input[type=submit]:hover {
 input:read-only {
   background-color: rgb(165, 165, 165);
   font-weight: bold;
+}
+
+textarea {
+  border-radius: 10px;
 }
 
 .error {
@@ -62,6 +67,11 @@ button {
   font-family: 'Courier New', Courier, monospace;
   padding: 10px;
   cursor:pointer;
+  border-radius: 12px;
+}
+
+button:hover {
+  background-color: rgba(175, 175, 175, 0.897);
 }
 
 .button-logout {
@@ -71,6 +81,9 @@ button {
   padding: 2px;
 }
 
+.button-logout:hover {
+  background-color:rgb(185, 0, 87);
+}
 
 
 /*others*/
