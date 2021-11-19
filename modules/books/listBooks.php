@@ -29,7 +29,7 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
       echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $authors . '</td><td>' . $summary . '</td><td>' . $last_modification . '</td>
             <td><button><a href="?delbook='. $isbn .'">DEL</a></button></td>
-            <td><button><a href="/pages/updateBook.php?isbn='.$isbn.'&title='.$title.'&category='.$category.'&year='.$year.'&authors='.$authors.'&summary='.$summary.'">UPDATE</a></button></td></tr>';
+            <td><button><a href="/pages/updateBook.php?isbn='.$isbn.'">UPDATE</a></button></td></tr>';
     }
     echo '</table>';
   }else {
@@ -50,7 +50,7 @@ elseif(isset($_POST['search_name']) && !empty($_POST["title"])){
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
       echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $authors . '</td><td>' . $summary . '</td><td>' . $last_modification . '</td>
             <td><button><a href="?delbook='. $isbn .'">DEL</a></button></td>
-            <td><button><a href="/pages/updateBook.php?isbn='.$isbn.'&title='.$title.'&category='.$category.'&year='.$year.'&authors='.$authors.'&summary='.$summary.'">UPDATE</a></button></td></tr>';
+            <td><button><a href="/pages/updateBook.php?isbn='.$isbn.'">UPDATE</a></button></td></tr>';
     }
     echo '</table>';
   }else {
@@ -69,7 +69,7 @@ else {
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
       echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $authors . '</td><td>' . $summary . '</td><td>' . $last_modification . '</td>
             <td><button><a href="?delbook='. $isbn .'">DEL</a></button></td>
-            <td><button><a href="/pages/updateBook.php?isbn='.$isbn.'&title='.$title.'&category='.$category.'&year='.$year.'&authors='.$authors.'&summary='.$summary.'">UPDATE</a></button></td></tr>';
+            <td><button><a href="/pages/updateBook.php?isbn='.$isbn.'">UPDATE</a></button></td></tr>';
     }
     echo '</table>';
   } else {
