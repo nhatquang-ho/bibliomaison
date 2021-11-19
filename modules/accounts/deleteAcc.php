@@ -12,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 #check if it's the default account
 if ($name == 'tipou'){
     echo '<script>alert("You cannot delete the default account");</script>';
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="/index.php"} , 0);</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/options.php"} , 0);</script>';
 }
 #delete this user account
 else{
