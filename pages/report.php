@@ -20,7 +20,7 @@
         E-mail: <input type="text" name="email" maxlength="30">
         <span class="error">* <?php echo $emailErr;?></span>
         <br><br>
-        Comment: <textarea name="comment" rows="5" cols="40" maxlength="500"></textarea>
+        Comment: <textarea name="comment" rows="5" cols="40" maxlength="2000"></textarea>
         <br><br>
         <input type="submit" name="submit" value="Send">
     </form>

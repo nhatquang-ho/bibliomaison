@@ -12,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
 #get the book
 $isbn = $_GET['isbn'];
-$getbook = mysql_query("SELECT title,category,year,authors,summary FROM $name WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+$getbook = mysql_query("SELECT title,category,year,edition,authors,summary FROM $name WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 $book = mysql_fetch_assoc($getbook);
 if(!$book){
     echo '<script>alert("Book not found");</script>';
@@ -23,6 +23,7 @@ if(!$book){
 $title = $book['title'];
 $category = $book['category'];
 $year = $book['year'];
+$edition = $book['edition'];
 $authors = $book['authors'];
 $summary = $book['summary'];
 
@@ -50,13 +51,14 @@ if(isset($_POST['updbook']) && $titleErr=="" && $yearErr==""){
     $title = $_POST['title'];
     $category = $_POST['category'];
     $year = $_POST['year'];
+    $edition = $_POST['edition'];
     $authors = $_POST['authors'];
     $summary = $_POST['summary'];
 
     $last_modification = date('Y-m-d H:i:s');
 
     #get the book via isbn and update its information
-    $update_book = mysql_query("UPDATE $name SET title='$title', category='$category', year='$year', authors='$authors', summary='$summary', last_modification='$last_modification' WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+    $update_book = mysql_query("UPDATE $name SET title='$title', category='$category', year='$year', edition='$edition', authors='$authors', summary='$summary', last_modification='$last_modification' WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     echo '<script>console.log("Book isgn-' . $isbn . ' updated")</script>';
     echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/listBooks.php"} , 0);</script>';
 }

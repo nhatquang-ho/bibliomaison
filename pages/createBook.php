@@ -24,7 +24,7 @@ if($_SESSION["name"]) {
         <label>ISBN: <input type="text" name="isbn" maxlength="30" /></label>
         <span class="error">* <?php echo $isbnErr;?></span>
         <br><br>
-        <label>Title: <input type="text" name="title" maxlength="30" /></label>
+        <label>Title: <input type="text" name="title" maxlength="50" /></label>
         <span class="error">* <?php echo $titleErr;?></span>
         <br><br>
         <label>Category:
@@ -45,9 +45,11 @@ if($_SESSION["name"]) {
         <label>Year: <input type="text" name="year" maxlength="4" /></label>
         <span class="error"><?php echo $yearErr;?></span>
         <br><br>
+        <label>Edition: <input type="text" name="edition" maxlength="30" /></label>
+        <br><br>
         <label>Authors: <input type="text" name="authors" maxlength="50" /></label>
         <br><br>
-        <label>Summary: <textarea name="summary" rows="5" cols="40" maxlength="200"></textarea></label>
+        <label>Summary: <textarea name="summary" rows="5" cols="40" maxlength="1500"></textarea></label>
         <br><br>
         <input type="submit" name="creatbook" value="Save"><br>
     </form>
