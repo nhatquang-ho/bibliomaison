@@ -14,6 +14,12 @@ include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 $isbn = $_GET['isbn'];
 $getbook = mysql_query("SELECT title,category,year,authors,summary FROM $name WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 $book = mysql_fetch_assoc($getbook);
+if(!$book){
+    echo '<script>alert("Book not found");</script>';
+    echo '<script>console.log("Book not found")</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/listBooks.php"} , 0);</script>';
+}
+
 $title = $book['title'];
 $category = $book['category'];
 $year = $book['year'];
@@ -51,7 +57,6 @@ if(isset($_POST['updbook']) && $titleErr=="" && $yearErr==""){
 
     #get the book via isbn and update its information
     $update_book = mysql_query("UPDATE $name SET title='$title', category='$category', year='$year', authors='$authors', summary='$summary', last_modification='$last_modification' WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
-    echo '<script>alert("Your book is successfully updated");</script>';
     echo '<script>console.log("Book isgn-' . $isbn . ' updated")</script>';
     echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/listBooks.php"} , 0);</script>';
 }
