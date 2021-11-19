@@ -68,8 +68,8 @@ else {
     while ($book = mysql_fetch_assoc($books)) {
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
       echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td><td>' . $summary . '</td><td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'"><button type="button">DEL</button></a></td>
-            <td><a href="/pages/updateBook.php?isbn='.$isbn.'"><button type="button">UPDATE</button></a></td></tr>';
+            <td><a href="?delbook='. $isbn .'"><input type="image" src="/assets/images/delete.png" /></a></td>
+            <td><a href="/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
     }
     echo '</table>';
   } else {
