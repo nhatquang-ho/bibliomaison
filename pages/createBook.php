@@ -3,8 +3,9 @@
 <html>
 
 <head>
-    <title>ADD BOOK</title>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
+    <title>ADD BOOK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <?php
