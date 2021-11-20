@@ -54,7 +54,7 @@ if($_SESSION["name"]) {
         <input type="submit" name="creatbook" value="Save"><br>
     </form>
 
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/pages/listBooks.php">Back to list books</a></nav>
 
 </body>
 
