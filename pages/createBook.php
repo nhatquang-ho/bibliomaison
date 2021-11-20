@@ -33,7 +33,7 @@ if($_SESSION["name"]) {
             <option value="Unknown">Unknown</option>
             <option value="Biographies and Memoirs">Biographies and Memoirs</option>
             <option value="Literature and Fiction">Literature and Fiction</option>
-            <option value="Children's">Children's</option>
+            <option value="Children">Children</option>
             <option value="Mystery and Suspense">Mystery and Suspense</option>
             <option value="Education and Reference">Education and Reference</option>
             <option value="Religion and Spirituality">Religion and Spirituality</option>
