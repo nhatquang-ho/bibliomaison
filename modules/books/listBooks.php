@@ -55,7 +55,7 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
     }
     echo '</table>';
   }else {
-    echo "0 book found";
+    echo "0 book found<br>";
   }
 }
 
@@ -97,7 +97,7 @@ elseif(isset($_POST['search_name']) && !empty($_POST["title"])){
     }
     echo '</table>';
   }else {
-    echo "0 book found";
+    echo "0 book found<br>";
   }
 }
 
@@ -137,7 +137,7 @@ else {
     }
     echo '</table>';
   } else {
-    echo "0 book in the library";
+    echo "0 book in the library<br>";
   }
 }
 ?>

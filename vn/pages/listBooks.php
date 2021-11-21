@@ -20,7 +20,7 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 if($_SESSION["name"]) {
 ?>
 
-    <h1>List all books in your library</h1>
+    <h1>Sách của bạn</h1>
 
     <form action="" method="post">
         <input type="text" name="isbn">

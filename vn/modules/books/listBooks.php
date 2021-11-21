@@ -54,7 +54,7 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
     }
     echo '</table>';
   }else {
-    echo "Không tìm thấy sách";
+    echo "Không tìm thấy sách<br>";
   }
 }
 
@@ -96,7 +96,7 @@ elseif(isset($_POST['search_title']) && !empty($_POST["title"])){
     }
     echo '</table>';
   }else {
-    echo "Không tìm thấy sách";
+    echo "Không tìm thấy sách<br>";
   }
 }
 
@@ -136,7 +136,7 @@ else {
     }
     echo '</table>';
   } else {
-    echo "Chưa có sách";
+    echo "Chưa có sách<br>";
   }
 }
 ?>
