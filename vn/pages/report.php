@@ -1,32 +1,32 @@
-<?php include $_SERVER['DOCUMENT_ROOT']."/modules/sendreport.php" ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/vn/modules/sendreport.php" ?>
 
 <html>
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
-    <title>REPORT</title>
+    <title>BÁO CÁO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
-    <h2>Please enter the information below</h2>
-    <p><span class="error">* required field</span></p>
+    <h2>Vui lòng điền thông tin bên dưới:</h2>
+    <p><span class="error">* bắt buộc</span></p>
     <form method="post" action="">
-        Name: <input type="text" name="name" maxlength="30">
+        Tên của bạn: <input type="text" name="name" maxlength="30">
         <span class="error">* <?php echo $nameErr;?></span>
         <br><br>
-        E-mail: <input type="text" name="email" maxlength="30">
+        Email: <input type="text" name="email" maxlength="30">
         <span class="error">* <?php echo $emailErr;?></span>
         <br><br>
-        Comment: <textarea name="comment" rows="5" cols="40" maxlength="2000"></textarea>
+        Báo cáo: <textarea name="comment" rows="5" cols="40" maxlength="2000"></textarea>
         <span class="error">* <?php echo $commentErr;?></span>
         <br><br>
-        <input type="submit" name="submit" value="Send">
+        <input type="submit" name="submit" value="Gửi">
     </form>
 
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/vn/index.php">Quay về trang chủ</a></nav>
 
 </body>
 

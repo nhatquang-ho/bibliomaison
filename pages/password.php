@@ -19,6 +19,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 <body>
     
     <h1>Please enter your new password: </h1>
+    <p><span class="error">* required field</span></p>
     <form method="post" action="">
         <label>New password: <input type="password" name="password" /></label>
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
@@ -28,7 +29,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <br>
     </form>
 
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/pages/options.php">Back to Parameters</a></nav>
 
 </body>
 

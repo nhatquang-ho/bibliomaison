@@ -26,18 +26,20 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <span class="error"><?php echo $titleErr;?></span>
         <br><br>
         <label>Category:
-        <select id="mySelect" name="category">
+        <select id="mySelect" name="category" onchange="otherCheck(this);">
             <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
             <option value="Unknown">Unknown</option>
-            <option value="Biographies and Memoirs">Biographies and Memoirs</option>
-            <option value="Literature and Fiction">Literature and Fiction</option>
+            <option value="Politics">Politics</option>
+            <option value="Science - Economy">Science - Economy</option>
+            <option value="Literature - Art">Literature - Art</option>
+            <option value="Culture - Society - History">Culture - Society - History</option>
+            <option value="Education">Education</option>
+            <option value="Story, Novel">Story, Novel</option>
+            <option value="Psychology, spirituality, religion">Psychology, spirituality, religion</option>
             <option value="Children">Children</option>
-            <option value="Mystery and Suspense">Mystery and Suspense</option>
-            <option value="Education and Reference">Education and Reference</option>
-            <option value="Religion and Spirituality">Religion and Spirituality</option>
-            <option value="History">History</option>
             <option value="Other">Other</option>
         </select>
+        <input type="text" id="category-other" style="visibility:hidden;" name="category-other" maxlength="30" />
         </label>
         <br><br>
         <label>Year: <input type="text" name="year" value="<?php echo $year; ?>"  maxlength="4" /></label>
@@ -57,6 +59,13 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         for (var i=1; i<selectobject.options.length; i++) {
             if (selectobject.options[i].value == "<?php echo $category; ?>")
                 selectobject.removeChild(selectobject.options[i]);
+        }
+
+        function otherCheck(that){
+            if(that.value == "Other"){
+                var x = document.getElementById("category-other");
+                x.style.visibility = "visible";
+            }
         }
     </script>
 

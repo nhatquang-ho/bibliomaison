@@ -6,12 +6,12 @@ session_start();
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
-    <title>YOUR BOOKS</title>
+    <title>SÁCH CỦA BẠN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
+include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 ?>
 
 <body>
@@ -24,25 +24,24 @@ if($_SESSION["name"]) {
 
     <form action="" method="post">
         <input type="text" name="isbn">
-        <input type="submit" name="search_isbn" value="Search book isbn">
+        <input type="submit" name="search_isbn" value="Tìm ISBN sách">
         <input type="text" name="title">
-        <input type="submit" name="search_name" value="Search book title">
+        <input type="submit" name="search_title" value="Tìm tựa sách">
     </form>
 
     <?php #display books table
-    include $_SERVER['DOCUMENT_ROOT']."/modules/books/listBooks.php" 
+    include $_SERVER['DOCUMENT_ROOT']."/vn/modules/books/listBooks.php" 
     ?>
 
     <br>
-    <a href="/pages/createBook.php"><button type="button">Add a new book</button></a>
-    <a href="/modules/books/deleteAllBooks.php" onclick="return Confirm()"><button type="button">Delete all
-            books</button></a>
+    <a href="/vn/pages/createBook.php"><button type="button">Thêm sách</button></a>
+    <a href="/modules/books/deleteAllBooks.php" onclick="return Confirm()"><button type="button">Xóa tất cả sách</button></a>
     <br><br>
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/index.php">Quay về trang chủ</a></nav>
 
     <script type="text/javascript">
     function Confirm() {
-        if (confirm('Do you want to delete all books?')) {
+        if (confirm('Bạn có chắc muốn xóa tất cả sách?')) {
             return true;
         } else {
             return false;
@@ -53,7 +52,7 @@ if($_SESSION["name"]) {
 </body>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/include/footer.php";
+include $_SERVER['DOCUMENT_ROOT']."/vn/include/footer.php";
 ?>
 
 </html>
