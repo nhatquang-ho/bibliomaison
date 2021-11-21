@@ -23,8 +23,7 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
   $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
   if (mysql_num_rows($books)>0) {
     echo '<table style="width:100%">';
-    $table_header = '<h4><tr><th>Num</th><th>ISBN</th><th>Title</th><th>Category</th><th>Year</th><th>Edition</th><th>Authors</th><th>Summary</th><th>Last Modification</th><th>Delete</th><th>Update</th></tr></h4>';
-    echo $table_header;
+    echo '<h4><tr><th>STT</th><th>ISBN</th><th>Tựa đề</th><th>Thể loại</th><th>Năm</th><th>Nhà xuất bản</th><th>Tác giả</th><th>Tóm tắt</th><th>Lần sửa cuối</th><th>Xóa</th><th>Sửa</th></tr></h4>';
 
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
@@ -50,23 +49,23 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
             <td><a href="?delbook='. $isbn .'"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
+            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
     echo '</table>';
   }else {
-    echo "0 book found";
+    echo "Không tìm thấy sách";
   }
 }
 
 #Search book via name and display
-elseif(isset($_POST['search_name']) && !empty($_POST["title"])){
+elseif(isset($_POST['search_title']) && !empty($_POST["title"])){
   $title_s=$_POST["title"];
 
   $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
   if (mysql_num_rows($books)>0) {
     echo '<table style="width:100%">';
-    echo '<h4><tr><th>Num</th><th>ISBN</th><th>Title</th><th>Category</th><th>Year</th><th>Edition</th><th>Authors</th><th>Summary</th><th>Last Modification</th><th>Delete</th><th>Update</th></tr></h4>';
+    echo '<h4><tr><th>STT</th><th>ISBN</th><th>Tựa đề</th><th>Thể loại</th><th>Năm</th><th>Nhà xuất bản</th><th>Tác giả</th><th>Tóm tắt</th><th>Lần sửa cuối</th><th>Xóa</th><th>Sửa</th></tr></h4>';
     
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
@@ -92,12 +91,12 @@ elseif(isset($_POST['search_name']) && !empty($_POST["title"])){
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
             <td><a href="?delbook='. $isbn .'"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
+            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
     echo '</table>';
   }else {
-    echo "0 book found";
+    echo "Không tìm thấy sách";
   }
 }
 
@@ -106,7 +105,7 @@ else {
   $books = mysql_query("SELECT * FROM $name ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
   if (mysql_num_rows($books)>0) {
     echo '<table style="width:100%">';
-    echo '<h4><tr><th>Num</th><th>ISBN</th><th>Title</th><th>Category</th><th>Year</th><th>Edition</th><th>Authors</th><th>Summary</th><th>Last Modification</th><th>Delete</th><th>Update</th></tr></h4>';
+    echo '<h4><tr><th>STT</th><th>ISBN</th><th>Tựa đề</th><th>Thể loại</th><th>Năm</th><th>Nhà xuất bản</th><th>Tác giả</th><th>Tóm tắt</th><th>Lần sửa cuối</th><th>Xóa</th><th>Sửa</th></tr></h4>';
     
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
@@ -132,12 +131,12 @@ else {
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
             <td><a href="?delbook='. $isbn .'"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
+            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
     echo '</table>';
   } else {
-    echo "0 book in the library";
+    echo "Chưa có sách";
   }
 }
 ?>

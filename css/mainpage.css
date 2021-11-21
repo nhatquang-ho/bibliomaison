@@ -64,7 +64,8 @@ nav a:hover {
 
 /*table*/
 table {
-  border: black 1px solid;
+  border: rgb(2, 71, 0) 0.5px solid;
+  border-radius: 13px; 
   border-collapse: collapse;
 }
 

@@ -12,26 +12,26 @@ $name = $email = $comment = "";
 #Set conditions for input values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
+        $nameErr = "Vui lòng điền tên của bạn";
     } else {
         $name = $_POST["name"];
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $nameErr = "Only letters and white space allowed";
+        $nameErr = "Chỉ cho phép các chữ cái và khoảng trắng";
         }
     }
 
     if (empty($_POST["email"])) {
-        $emailErr = "Email is required";
+        $emailErr = "Vui lòng điền email của bạn";
     } else {
         $email = $_POST["email"];
         if (!preg_match("/^[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\\.[a-z][a-z]+$/",$email)) {
-        $emailErr = "email invalid";
+        $emailErr = "email không hợp lệ";
         }
     }
 
     if (empty($_POST["comment"])) {
-        $commentErr = "Required!";
+        $commentErr = "Bắt buộc!";
     } else {
         $comment = $_POST["comment"];
     }
@@ -60,13 +60,13 @@ if (isset($_POST['submit']) && $nameErr=="" && $emailErr == "" && $commentErr ==
 
     if (mail($to, $subject, $message, $headers)) {
       echo '<script>
-              alert("Your message was sent");
+              alert("Đã gửi");
               console.log("message sent");
             </script>';
     }
     else {
       echo '<script>
-              alert("Failed to send your message");
+              alert("Không thể gửi, vui lòng thử lại!");
               console.log("failed to sent message");
             </script>';
     }

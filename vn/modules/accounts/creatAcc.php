@@ -23,29 +23,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = $usrname = $pwd = "";
   $nameErr = $usrnameErr = $pwdErr = "";
   if (empty($_POST["name"])) {
-    $nameErr = "Name is required";
+    $nameErr = "Vui lòng điền tên của bạn";
   } else {
     $name = $_POST["name"];
     // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed";
+      $nameErr = "Chỉ cho phép các chữ cái và khoảng trắng";
     }
   }
   if (empty($_POST["username"])) {
-    $usrnameErr = "Username is required";
+    $usrnameErr = "Vui lòng điền tên tài khoản";
   } else {
     $usrname = $_POST["username"];
     // check if username only contains letters and numbers
     if (!preg_match("/^[a-zA-Z0-9]*$/",$usrname) || strlen($usrname) < 6 || strlen($usrname) > 30 ) {
-      $usrnameErr = "Only letters and numbers allowed, must be 6 to 30 characters";
+      $usrnameErr = "Không hợp lệ: chỉ cho phép chữ cái và số, từ 6 đến 30 ký tự";
     }
   }
   if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
+    $emailErr = "Vui lòng điền email của bạn";
   } else {
     $email = $_POST["email"];
     if (!preg_match("/^[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\\.[a-z][a-z]+$/",$email)) {
-      $emailErr = "email invalid";
+      $emailErr = "email không hợp lệ";
     }
   }
 }
@@ -63,10 +63,10 @@ if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $emailErr ==
     $existacc = mysql_query("SELECT user_name FROM login_user where user_name='$username'") 
         or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     if(mysql_fetch_assoc($existacc)){
-        die('<script>alert("Username existed, please choose another one!");</script>');
+        die('<script>alert("Tên tài khoản tồn tại, vui lòng chọn tên tài khoản khác!");</script>');
         echo '<script>console.log("Username existed")</script>';
     }
-    $adduser = mysql_query("INSERT INTO login_user(name,user_name,password,language) VALUES('$name','$username','$pass','$language')") 
+    $adduser = mysql_query("INSERT INTO login_user(name,user_name,password, language) VALUES('$name','$username','$pass','$language')") 
         or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
     $creattab = mysql_query("CREATE TABLE $username (
@@ -88,12 +88,12 @@ if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $emailErr ==
     ini_set("smtp_port",$_ENV['SMTP_PORT']);
     $to = $_POST['email'];
     $subject = 'bibliomaison.free.fr PASSWORD';
-    $message = "Hello " . $_POST['name'] . ","
-                . "<br>You can now log in to http://bibliomaison.free.fr/pages/login.php :"
-                . "<br><br>Username:  " . $_POST['username']
-                . "<br>Password:  " . $pass
-                . "<br><br>You can change your password later."
-                . "<br> If you have any question, please contact bibliomaison@free.fr"
+    $message = "Xin chào " . $_POST['name'] . ","
+                . "<br>Bạn có thể đăng nhập tại http://bibliomaison.free.fr/vn/pages/login.php :"
+                . "<br><br>Tên tài khoản:  " . $_POST['username']
+                . "<br>Mật khẩu:  " . $pass
+                . "<br><br>Bạn có thể đổi mật khẩu của mình sau khi đăng nhập."
+                . "<br>Nếu có gì thắc mắc, vui lòng liên hệ qua email: bibliomaison@free.fr"
                 . "<br><br>ENJOY! :)"
                 . "<br>BIBLIOMAISON Team";
     $headers = "MIME-Version: 1.0" . "\r\n";

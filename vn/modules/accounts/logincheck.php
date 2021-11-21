@@ -20,7 +20,7 @@ if(isset($_POST['submit'])) {
         $_SESSION["username"]=$user['user_name'];
         $_SESSION["lang"]=$user['language'];
     } else {
-        $message = "Invalid Username or Password!";
+        $message = "Tên tài khoản hoặc mật khẩu sai!";
         echo '<script>console.log("Username or password incorrect")</script>';
     }
 }
