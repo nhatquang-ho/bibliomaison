@@ -8,6 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
+<?php
+$path = "/vn" . $_SERVER['REQUEST_URI'];
+?>
+<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ VN </button></a>
+<br>
+
 <body>
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 

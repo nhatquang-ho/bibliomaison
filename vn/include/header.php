@@ -1,9 +1,15 @@
 <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 Chào mừng <b><?php echo $_SESSION["name"]; ?> </b><a href="/vn/pages/logout.php"><button class="button-logout"
-        type="button">Đăng xuất</button></a><br>
+        type="button">Đăng xuất</button></a> | 
 
 <?php
-if ($_SERVER['REQUEST_URI'] != "/vn/pages/options.php"){
+$path = substr($_SERVER['REQUEST_URI'],3);
+?>
+<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ VN </button></a>
+<br>
+
+<?php
+if ($_SERVER['REQUEST_URI'] != "/vn/pages/options.php" && $_SERVER['REQUEST_URI'] != "/vn/pages/password.php"){
 ?>
 <a href="/vn/pages/options.php"><input onmouseover="Show_text()" onmouseout="Hide_text()" type="image"
         src="/assets/images/parameters.png" /></a>
