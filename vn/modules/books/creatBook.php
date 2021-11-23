@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn=$title=$year="";
     $isbnErr=$titleErr=$yearErr="";
     if (empty($_POST["year"])) {
-        $year=NULL;
+        $yearErr = "Vui lòng điền năm";
     } else {
         $year = $_POST["year"];
         // check year valid
@@ -48,15 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $summary = $_POST["summary"];
     }
     if (empty($_POST["category"])) {
-        $category="Unknown";
+        $category="Khong xac dinh";
     } else {
-        if($_POST["category"] == "Other"){
+        if($_POST["category"] == "Khac"){
             if (empty($_POST["category-other"])) {
-                $category="Unknown";
+                $category="Khong xac dinh";
             }
             else {
                 $category = $_POST["category-other"];
             }
+        } else {
+            $category = $_POST["category"];
         }
     }
     if (empty($_POST["edition"])) {

@@ -45,7 +45,7 @@ if($_SESSION["name"]) {
         </label>
         <br><br>
         <label>Năm: <input type="text" name="year" maxlength="4" /></label>
-        <span class="error"><?php echo $yearErr;?></span>
+        <span class="error">* <?php echo $yearErr;?></span>
         <br><br>
         <label>Nhà xuất bản: <input type="text" name="edition" maxlength="30" /></label>
         <br><br>

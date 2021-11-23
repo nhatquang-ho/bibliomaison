@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn=$title=$year="";
     $isbnErr=$titleErr=$yearErr="";
     if (empty($_POST["year"])) {
-        $year=NULL;
+        $yearErr = "Year is required";
     } else {
         $year = $_POST["year"];
         // check year valid
@@ -57,6 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             else {
                 $category = $_POST["category-other"];
             }
+        } else {
+            $category = $_POST["category"];
         }
     }
     if (empty($_POST["edition"])) {

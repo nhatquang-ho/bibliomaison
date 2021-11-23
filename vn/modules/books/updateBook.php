@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["title"])) {
         $titleErr = "Vui lòng điền tựa đề sách";
     }
-    if($_POST["category"] == "Other"){
+    if($_POST["category"] == "Khac"){
         if (empty($_POST["category-other"])) {
             $category="Unknown";
         }
