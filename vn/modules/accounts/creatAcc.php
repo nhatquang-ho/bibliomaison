@@ -68,12 +68,12 @@ if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $emailErr ==
     if(mysql_fetch_assoc($existusername)){
         echo '<script>alert("Tên tài khoản tồn tại, vui lòng chọn tên tài khoản khác!");</script>';
         echo '<script>console.log("Username existed")</script>';
-        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/login.php"} , 0);</script>';
+        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/creatAcc.php"} , 0);</script>';
     }
     elseif(mysql_fetch_assoc($existemail)){
         echo '<script>alert("Email này đã được sử dụng, vui lòng sử email khác!");</script>';
         echo '<script>console.log("Email existed")</script>';
-        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/login.php"} , 0);</script>';
+        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/creatAcc.php"} , 0);</script>';
     }
     else {
       $adduser = mysql_query("INSERT INTO login_user(name,user_name,email,password,language) VALUES('$name','$username','$email','$pass','$language')") 
