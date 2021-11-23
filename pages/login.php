@@ -11,7 +11,7 @@
 <?php
 $path = "/vn" . $_SERVER['REQUEST_URI'];
 ?>
-<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ VN </button></a>
+<a href="<?php echo $path; ?>"><button class="button-lang" type="button"><b>EN</b> ↔ VN </button></a>
 <br>
 
 <body>

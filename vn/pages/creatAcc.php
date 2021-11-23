@@ -11,7 +11,7 @@
 <?php
 $path = substr($_SERVER['REQUEST_URI'],3);
 ?>
-<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ VN </button></a>
+<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ <b>VN</b> </button></a>
 <br>
 
 <body>
@@ -27,8 +27,10 @@ $path = substr($_SERVER['REQUEST_URI'],3);
         <label>Email: <input type="text" name="email" maxlength="30" /></label>
         <span class="error">* <?php echo $emailErr;?></span><br><br>
         <label>Ngôn ngữ: 
-            <input type="radio" name="language" value="VN" checked>
-            <input type="radio" name="language" value="EN" >
+            <input type="radio" id="lang-VN" name="language" value="VN" checked>
+            <label for="lang-VN">Tiếng Việt</label>
+            <input type="radio" id="lang-EN" name="language" value="EN" >
+            <label for="lang-EN">Tiếng Anh</label>
         </label>
         <br><br>
         <input type="submit" name="creatacc" value="Tạo"></p>

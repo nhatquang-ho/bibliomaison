@@ -11,7 +11,7 @@
 <?php
 $path = "/vn" . $_SERVER['REQUEST_URI'];
 ?>
-<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ VN </button></a>
+<a href="<?php echo $path; ?>"><button class="button-lang" type="button"><b>EN</b> ↔ VN </button></a>
 <br>
 
 <body>
@@ -27,9 +27,11 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <span class="error">* <?php echo $usrnameErr;?></span><br><br>
         <label>Email: <input type="text" name="email" maxlength="30" /></label>
         <span class="error">* <?php echo $emailErr;?></span><br><br>
-        <label>Ngôn ngữ: 
-            <input type="radio" name="language" value="VN" checked>
-            <input type="radio" name="language" value="EN" >
+        <label>Language: 
+            <input type="radio" id="lang-VN" name="language" value="VN" >
+            <label for="lang-VN">Vietnamese</label>
+            <input type="radio" id="lang-EN" name="language" value="EN" checked>
+            <label for="lang-EN">English</label>
         </label>
         <br><br>
         <input type="submit" name="creatacc" value="Submit"></p>

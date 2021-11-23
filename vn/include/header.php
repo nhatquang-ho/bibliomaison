@@ -5,7 +5,7 @@ Chào mừng <b><?php echo $_SESSION["name"]; ?> </b><a href="/vn/pages/logout.p
 <?php
 $path = substr($_SERVER['REQUEST_URI'],3);
 ?>
-<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ VN </button></a>
+<a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ <b>VN</b> </button></a>
 <br>
 
 <?php
