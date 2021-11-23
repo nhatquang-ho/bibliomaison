@@ -25,7 +25,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <li><a href="/pages/password.php"><button type="button">Change your password</button></a></li>
     </menu>
 
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/index.php">Back to HomePage</a></nav>
 
 
     <script type="text/javascript">
