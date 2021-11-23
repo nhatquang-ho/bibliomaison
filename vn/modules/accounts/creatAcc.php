@@ -71,7 +71,7 @@ if(isset($_POST['creatacc']) && ($nameErr=="" && $usrnameErr=="" && $emailErr ==
         echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/creatAcc.php"} , 0);</script>';
     }
     elseif(mysql_fetch_assoc($existemail)){
-        echo '<script>alert("Email này đã được sử dụng, vui lòng sử email khác!");</script>';
+        echo '<script>alert("Email này đã được sử dụng, vui lòng sử dụng email khác!");</script>';
         echo '<script>console.log("Email existed")</script>';
         echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/creatAcc.php"} , 0);</script>';
     }
