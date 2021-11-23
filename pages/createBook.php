@@ -62,6 +62,10 @@ if($_SESSION["name"]) {
                 var x = document.getElementById("category-other");
                 x.style.visibility = "visible";
             }
+            else {
+                var x = document.getElementById("category-other");
+                x.style.visibility = "hidden";
+            }
         }
     </script>
 

@@ -66,6 +66,10 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
                 var x = document.getElementById("category-other");
                 x.style.visibility = "visible";
             }
+            else {
+                var x = document.getElementById("category-other");
+                x.style.visibility = "hidden";
+            }
         }
     </script>
 
