@@ -18,7 +18,7 @@ $path = substr($_SERVER['REQUEST_URI'],3);
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
     <center>
-    <h3>Đăng nhập</h3>
+    <h3>Đăng nhập</h3><br>
     <form name="frmUser" method="post" action="">
         <div class="error"><?php if($message!="") { echo $message; } ?></div>
         Tên tài khoản:<br>
