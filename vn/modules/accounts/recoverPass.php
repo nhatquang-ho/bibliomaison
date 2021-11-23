@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usernameErr="Tên tài khoản bắt buộc!";
     } else {
         $username = $_POST["username"];
-        if (!preg_match("/^[a-zA-Z0-9]*$/",$username) || strlen($usrname) < 6 || strlen($usrname) > 30 ) {
+        if (!preg_match("/^[a-zA-Z0-9]*$/",$username) || strlen($username) < 6 || strlen($username) > 30 ) {
           $usernameErr = "Tên tài khoản không hợp lệ";
         }
     }
