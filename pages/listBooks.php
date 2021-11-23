@@ -58,7 +58,7 @@ if($_SESSION["name"]) {
     ?>
 
     <br><br>
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/index.php">Back to HomePage</a></nav>
 
     <script type="text/javascript">
     function ConfirmDeleteAll() {

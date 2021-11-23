@@ -18,9 +18,9 @@ $path = substr($_SERVER['REQUEST_URI'],3);
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
     <center>
+    <h3>Đăng nhập</h3>
     <form name="frmUser" method="post" action="">
         <div class="error"><?php if($message!="") { echo $message; } ?></div>
-        <h3>Đăng nhập</h3>
         Tên tài khoản:<br>
         <input type="text" name="user_name" maxlength="30">
         <br>
@@ -32,6 +32,7 @@ $path = substr($_SERVER['REQUEST_URI'],3);
         <input type="submit" name="submit" value="Đăng nhập">
         <a href="/vn/pages/creatAcc.php"><button type="button">Đăng ký</button></a>
     </form>
+        <a href="/vn/pages/recoverPass.php">Quên mật khẩu?</a>
         <p>Tài khoản mặc định - tipou:tipou</p>
     </center>
     

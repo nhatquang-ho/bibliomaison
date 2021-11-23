@@ -7,7 +7,6 @@ $dotenv = new DotEnv($_SERVER['DOCUMENT_ROOT'].'/.env');
 $loadvars = $dotenv->load();
 
 $message="";
-#Connect to the database
 if(isset($_POST['submit'])) {
    
     include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";

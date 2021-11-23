@@ -37,7 +37,7 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <input type="submit" name="creatacc" value="Submit"></p>
     </form>
 
-    <nav><a href="/pages/login.php">Back to main menu</a></nav>
+    <nav><a href="/pages/login.php">Back to Login</a></nav>
 
 </body>
 

@@ -32,7 +32,7 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <input type="submit" name="submit" value="Send">
     </form>
 
-    <nav><a href="/index.php">Back to main menu</a></nav>
+    <nav><a href="/index.php">Back to HomePage</a></nav>
 
 </body>
 
