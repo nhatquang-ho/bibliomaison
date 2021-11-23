@@ -21,7 +21,7 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 
     <hgroup>
         <h1>Thư viện gia đình</h1>
-        <h2>Hãy thêm sách của bạn vào thư viện</h2>
+        <h2>Hãy thêm sách vào thư viện của bạn</h2>
     </hgroup>
 
     <menu>

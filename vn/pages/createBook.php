@@ -28,18 +28,18 @@ if($_SESSION["name"]) {
         <span class="error">* <?php echo $titleErr;?></span>
         <br><br>
         <label>Thể loại:
-        <select name="category">
+        <select name="category" onchange="otherCheck(this);">
             <option value="">--Vui lòng chọn thể loại sách--</option>
-            <option value="Không xác định">Không xác định</option>
-            <option value="Chính trị">Chính trị</option>
-            <option value="Khoa học - Kinh tế">Khoa học - Kinh tế</option>
-            <option value="Văn học - Nghệ thuật">Văn học - Nghệ thuật</option>
-            <option value="Văn hóa - Xã hội - Lịch sử">Văn hóa - Xã hội - Lịch sử</option>
-            <option value="Giáo dục">Giáo dục</option>
-            <option value="Truyện, tiểu thuyết">Truyện, tiểu thuyết</option>
-            <option value="Tâm lý, tâm linh, tôn giáo">Tâm lý, tâm linh, tôn giáo</option>
-            <option value="Thiếu nhi">Thiếu nhi</option>
-            <option value="Khác">Khác</option>
+            <option value="Khong xac dinh">Không xác định</option>
+            <option value="Chinh tri">Chính trị</option>
+            <option value="Khoa hoc - Kinh te">Khoa học - Kinh tế</option>
+            <option value="Van hoc - Nghe thuat">Văn học - Nghệ thuật</option>
+            <option value="Van hoa - Xa hoi - Lich su">Văn hóa - Xã hội - Lịch sử</option>
+            <option value="Giao duc">Giáo dục</option>
+            <option value="Truyen, tieu thuyet">Truyện, tiểu thuyết</option>
+            <option value="Tam ly, tam linh, ton giao">Tâm lý, tâm linh, tôn giáo</option>
+            <option value="Thieu nhi">Thiếu nhi</option>
+            <option value="Khac">Khác</option>
         </select>
         <input type="text" id="category-other" style="visibility:hidden;" name="category-other" maxlength="30" />
         </label>
@@ -58,9 +58,13 @@ if($_SESSION["name"]) {
 
     <script>
         function otherCheck(that){
-            if(that.value == "Khác"){
+            if(that.value == "Khac"){
                 var x = document.getElementById("category-other");
                 x.style.visibility = "visible";
+            }
+            else {
+                var x = document.getElementById("category-other");
+                x.style.visibility = "hidden";
             }
         }
     </script>
