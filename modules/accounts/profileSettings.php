@@ -9,14 +9,13 @@ $loadvars = $dotenv->load();
 include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
 $session_name=$_SESSION["username"];
-$lang=$_SESSION["lang"];
 
 $getuser = mysql_query("SELECT * FROM login_user WHERE user_name='$session_name'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 $user = mysql_fetch_assoc($getuser);
 $name = $user["name"];
 $username = $user["user_name"];
 $email = $user["email"];
-
+$lang = $user["language"];
 
 #Set conditions for input values
 $pwd = $re_pwd = "";
@@ -123,7 +122,6 @@ if(isset($_POST['saveinfo']) && ($nameErr=="" && $usernameErr=="" && $emailErr==
         echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/profileSettings.php"} , 0);</script>';
     }
     else {
-        $_SESSION["lang"] = $lang;
         $update_info = mysql_query("UPDATE login_user SET name='$name',user_name='$username',email='$email',language='$lang'  WHERE user_name='$session_name'")
             or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
