@@ -9,7 +9,7 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
 <br>
 
 <?php
-if ($_SERVER['REQUEST_URI'] != "/pages/options.php" && $_SERVER['REQUEST_URI'] != "/pages/password.php"){
+if ($_SERVER['REQUEST_URI'] != "/pages/options.php" && $_SERVER['REQUEST_URI'] != "/pages/profileSettings.php"){
 ?>
 <a href="/pages/options.php"><input onmouseover="Show_text()" onmouseout="Hide_text()" type="image"
         src="/assets/images/parameters.png" /></a>
