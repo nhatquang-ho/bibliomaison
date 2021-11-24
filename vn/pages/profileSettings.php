@@ -41,12 +41,12 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     <br><br>
     <hr />
     <br>
-    <h3>Change your password:</h3>
+    <h3>Thay đổi mật khẩu:</h3>
     <p><span class="error">* bắt buộc</span></p>
     <form method="post" action="">
-        <label>New password: <input type="password" name="password" /></label>
+        <label>Mật khẩu mới: <input type="password" name="password" /></label>
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
-        <label>Re-enter your new password: <input type="password" name="re_password" /></label>
+        <label>Nhập lại mật khẩu mới: <input type="password" name="re_password" /></label>
         <span class="error">* <?php echo $pwdErr;?></span><br><br>
         <input type="submit" name="savepass" value="Lưu">
         <br>
