@@ -11,14 +11,14 @@ session_start();
 </head>
 
 <?php
+if($_SESSION["name"]) {
+?>
+
+<?php
 include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 ?>
 
 <body>
-
-<?php
-if($_SESSION["name"]) {
-?>
 
     <h1>List all books in your library</h1>
 

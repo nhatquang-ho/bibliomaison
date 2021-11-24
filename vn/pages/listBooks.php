@@ -11,14 +11,14 @@ session_start();
 </head>
 
 <?php
+if($_SESSION["name"]) {
+?>
+
+<?php
 include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 ?>
 
 <body>
-
-<?php
-if($_SESSION["name"]) {
-?>
 
     <h1>Sách của bạn</h1>
 
