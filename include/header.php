@@ -3,6 +3,7 @@ Welcome <b><?php echo $_SESSION["name"]; ?> </b><a href="/pages/logout.php"><but
         type="button">LOGOUT</button></a> | 
 
 <?php
+$_SERVER["lang"] = "EN";
 $path = "/vn" . $_SERVER['REQUEST_URI'];
 ?>
 <a href="<?php echo $path; ?>"><button class="button-lang" type="button"><b>EN</b> ↔ VN </button></a>

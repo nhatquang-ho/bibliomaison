@@ -12,7 +12,7 @@ session_start();
 <body>
 
 <?php
-if($_SESSION["name"]) {
+if($_SESSION["username"]) {
 ?>
 
 <?php
@@ -27,6 +27,19 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     <menu>
         <li><a href="/vn/pages/listBooks.php"><button type="button">Thư viện của bạn</button></a></li>
     </menu>
+
+<?php
+if($_SESSION["username"] == "tipou") {
+?>
+    <h2>Thử nghiệm:</h2>
+    <menu>
+        <li><a href="/vn/modules/testers/addtestbooks.php?quantity=10"><button type="button">Thêm 10 tựa sách</button></a></li>
+        <li><a href="/vn/modules/testers/addtestbooks.php?quantity=100"><button type="button">Thêm 100 tựa sách</button></a></li>
+    </menu>
+
+<?php
+}
+?>
 
 
 </body>

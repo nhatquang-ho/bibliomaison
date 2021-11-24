@@ -49,7 +49,7 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 
     <br>
     <a href="/vn/pages/createBook.php"><button type="button">Thêm sách</button></a>
-    <a href="/modules/books/deleteAllBooks.php" onclick="return ConfirmDeleteAll()"><button type="button">Xóa tất cả sách</button></a>
+    <a href="/vn/modules/books/deleteAllBooks.php" onclick="return ConfirmDeleteAll()"><button type="button">Xóa tất cả sách</button></a>
     <br>
     <p></p>
 

@@ -9,6 +9,7 @@
 </head>
 
 <?php
+$_SERVER["lang"] = "VN";
 $path = substr($_SERVER['REQUEST_URI'],3);
 ?>
 <a href="<?php echo $path; ?>"><button class="button-lang" type="button">EN ↔ <b>VN</b> </button></a>

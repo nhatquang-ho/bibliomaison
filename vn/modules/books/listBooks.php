@@ -47,7 +47,7 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
             <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
+            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
             <script>
             function show_text_'. $num_row .'(){
               var x = document.getElementById("summary-'. $num_row .'");
@@ -104,7 +104,7 @@ elseif(isset($_POST['search_title']) && !empty($_POST["title"])){
             <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
+            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
             <script>
             function show_text_'. $num_row .'(){
               var x = document.getElementById("summary-'. $num_row .'");
@@ -164,7 +164,7 @@ elseif(isset($_POST['search_category']) && !empty($_POST["category"])){
             <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
+            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
             <script>
             function show_text_'. $num_row .'(){
               var x = document.getElementById("summary-'. $num_row .'");
@@ -219,7 +219,7 @@ else {
             <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
+            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
             <script>
             function show_text_'. $num_row .'(){
               var x = document.getElementById("summary-'. $num_row .'");
