@@ -69,6 +69,6 @@ if(isset($_POST['updbook']) && $titleErr=="" && $yearErr==""){
     #get the book via isbn and update its information
     $update_book = mysql_query("UPDATE $name SET title='$title', category='$category', year='$year', edition='$edition', authors='$authors', summary='$summary', last_modification='$last_modification' WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     echo '<script>console.log("Book isgn-' . $isbn . ' updated")</script>';
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/listBooks.php"} , 0);</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="javascript:history.go(-2)"} , 0);</script>';
 }
 ?>

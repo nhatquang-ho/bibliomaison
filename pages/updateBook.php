@@ -74,7 +74,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
     </script>
 
     <br>
-    <nav><a href="/pages/listBooks.php">Back to list books</a></nav>
+    <nav><a href="javascript:history.go(-1)">Back</a></nav>
 
 </body>
 

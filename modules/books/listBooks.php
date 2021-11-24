@@ -14,6 +14,7 @@ if(isset($_GET['delbook'])){
   $isbn=$_GET['delbook'];
   $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
   echo '<script>console.log("Book isnb-'. $isbn .' deleted")</script>';
+  echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/listBooks.php"} , 0);</script>';
 }
 
 #Search book via isbn and display
@@ -40,7 +41,10 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
+      echo '<tr><td>' . $num . '</td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
+            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
             '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
@@ -94,7 +98,10 @@ elseif(isset($_POST['search_title']) && !empty($_POST["title"])){
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
+      echo '<tr><td>' . $num . '</td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
+            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
             '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
@@ -151,7 +158,10 @@ elseif(isset($_POST['search_category']) && !empty($_POST["category"])){
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
+      echo '<tr><td>' . $num . '</td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
+            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
             '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
@@ -203,7 +213,10 @@ else {
     $num_row = 0;
     while ($book = mysql_fetch_assoc($books)) {
       $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td><td>' . $isbn . '</td><td>' . $title . '</td><td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
+      echo '<tr><td>' . $num . '</td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
+            <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
+            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
             <td>'.
             '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
             '<a href="#" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
@@ -287,5 +300,5 @@ function ConfirmDeleteOne(isbn) {
         } else {
             return false;
         }
-    }
+}
 </script>
