@@ -18,7 +18,10 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 
 <body>
     
-    <h1>Thay đổi thông tin tài khoản: </h1>
+    <h1>
+        <a href="/vn/pages/options.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Thay đổi thông tin tài khoản: 
+    </h1>
     <h3>Thông tin cá nhân:</h3>
     <p><span class="error">* bắt buộc</span></p>
     <form method="post" action="">
@@ -51,8 +54,6 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
         <input type="submit" name="savepass" value="Lưu">
         <br>
     </form>
-
-    <nav><a href="/vn/pages/options.php">Quay lại Cài đặt</a></nav>
 
     <script>
         document.getElementById("lang-<?php echo $lang; ?>").checked = "true";

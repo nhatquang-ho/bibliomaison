@@ -27,7 +27,8 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <input type="submit" name="submit" value="Submit">
     </form>
 
-    <nav><a href="/pages/login.php">Back to Login</a></nav>
+    <a href="/pages/login.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+
     </center>
 </body>
 

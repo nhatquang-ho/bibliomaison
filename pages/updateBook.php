@@ -18,7 +18,10 @@ if($_SESSION["name"]) {
 include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 ?>
 
-    <h1>Public Library: Update a book</h1>
+    <h1>
+        <a href="javascript:history.go(-1)"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Public Library: Update a book
+    </h1>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" readonly="readonly" value="<?php echo $isbn ?>" /></label>
         <br><br>
@@ -72,9 +75,6 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
             }
         }
     </script>
-
-    <br>
-    <nav><a href="javascript:history.go(-1)">Back</a></nav>
 
 </body>
 
