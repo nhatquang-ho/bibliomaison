@@ -74,7 +74,7 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     </script>
 
     <br>
-    <nav><a href="/vn/pages/listBooks.php">Quay về thư viện</a></nav>
+    <nav><a href="javascript:history.go(-1)">Quay về</a></nav>
 
 </body>
 

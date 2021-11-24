@@ -129,7 +129,7 @@ if(isset($_POST['saveinfo']) && ($nameErr=="" && $usernameErr=="" && $emailErr==
 
         echo '<script>alert("Thông tin cá nhân cập nhật thành công!");</script>';
         echo '<script>console.log("Info updated")</script>';
-        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/options.php"} , 000);</script>';
+        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/options.php"} , 000);</script>';
     }
 }
 ?>

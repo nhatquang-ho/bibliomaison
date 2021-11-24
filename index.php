@@ -5,7 +5,7 @@ session_start();
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/mainpage.css">
-    <title>HOME PAGE</title>
+    <title>HOMEPAGE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
