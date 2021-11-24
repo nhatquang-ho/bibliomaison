@@ -20,7 +20,10 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 
 <body>
 
-    <h1>Sách của bạn</h1>
+    <h1>
+        <a href="/vn/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Sách của bạn
+    </h1>
 
     <p><button id="show-search-form-button" onclick="ShowSearchForm()">Tìm kiếm v</button></p>
     <form id="search-form" style="display:none;" action="" method="post">
@@ -56,9 +59,6 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     <?php #display books table
     include $_SERVER['DOCUMENT_ROOT']."/vn/modules/books/listBooks.php" 
     ?>
-
-    <br><br>
-    <nav><a href="/vn/index.php">Quay về trang chủ</a></nav>
 
     <script type="text/javascript">
     function ConfirmDeleteAll() {

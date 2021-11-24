@@ -18,7 +18,10 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
 <body>
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
-    <h2>Please enter the information below</h2>
+    <h1>
+        <a href="/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Please enter the information below
+    </h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
         Name: <input type="text" name="name" maxlength="30">
@@ -32,8 +35,6 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <br><br>
         <input type="submit" name="submit" value="Send">
     </form>
-
-    <nav><a href="/index.php">Back to HomePage</a></nav>
 
 </body>
 

@@ -19,7 +19,10 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
 
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
-    <h1>Fill the form below to create your account</h1>
+    <h1>
+        <a href="/pages/login.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Fill the form below to create your account
+    </h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
         <label>Name: <input type="text" name="name" maxlength="30" /></label>
@@ -37,8 +40,6 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <br><br>
         <input type="submit" name="creatacc" value="Submit"></p>
     </form>
-
-    <nav><a href="/pages/login.php">Back to Login</a></nav>
 
 </body>
 

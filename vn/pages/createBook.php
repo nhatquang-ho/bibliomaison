@@ -18,7 +18,10 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 if($_SESSION["name"]) {
 ?>
 
-    <h1>Thêm sách của bạn:</h1>
+    <h1>
+        <a href="/vn/pages/listBooks.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Thêm sách của bạn:
+    </h1>
     <p><span class="error">* bắt buộc</span></p>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" maxlength="30" /></label>
@@ -68,8 +71,6 @@ if($_SESSION["name"]) {
             }
         }
     </script>
-
-    <nav><a href="/vn/pages/listBooks.php">Quay về thư viện</a></nav>
 
 </body>
 

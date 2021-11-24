@@ -18,7 +18,10 @@ $path = substr($_SERVER['REQUEST_URI'],3);
 <body>
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
-    <h2>Vui lòng điền thông tin bên dưới:</h2>
+    <h1>
+        <a href="/vn/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Vui lòng điền thông tin bên dưới:
+    </h1>
     <p><span class="error">* bắt buộc</span></p>
     <form method="post" action="">
         Tên của bạn: <input type="text" name="name" maxlength="30">
@@ -32,8 +35,6 @@ $path = substr($_SERVER['REQUEST_URI'],3);
         <br><br>
         <input type="submit" name="submit" value="Gửi">
     </form>
-
-    <nav><a href="/vn/index.php">Quay về trang chủ</a></nav>
 
 </body>
 

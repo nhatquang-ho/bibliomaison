@@ -18,7 +18,10 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
 <body>
     
-    <h1>Profile settings: </h1>
+    <h1>
+        <a href="/pages/options.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Profile settings: 
+    </h1>
     <h3>Change your information:</h3>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
@@ -51,8 +54,6 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         <input type="submit" name="savepass" value="Save changes">
         <br>
     </form>
-
-    <nav><a href="/pages/options.php">Back to Parameters</a></nav>
 
     <script>
         document.getElementById("lang-<?php echo $lang; ?>").checked = "true";

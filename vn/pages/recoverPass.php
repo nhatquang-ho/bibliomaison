@@ -27,7 +27,8 @@ $path = substr($_SERVER['REQUEST_URI'],3);
         <input type="submit" name="submit" value="Xác nhận">
     </form>
 
-    <nav><a href="/vn/pages/login.php">Quay lại trang đăng nhập</a></nav>
+    <a href="/vn/pages/login.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+
     </center>
 </body>
 

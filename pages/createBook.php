@@ -18,7 +18,10 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 if($_SESSION["name"]) {
 ?>
 
-    <h1>Add a new book:</h1>
+    <h1>
+        <a href="/pages/listBooks.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        Add a new book:
+    </h1>
     <p><span class="error">* required field</span></p>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" maxlength="30" /></label>
@@ -68,8 +71,6 @@ if($_SESSION["name"]) {
             }
         }
     </script>
-
-    <nav><a href="/pages/listBooks.php">Back to list books</a></nav>
 
 </body>
 

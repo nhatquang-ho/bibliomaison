@@ -20,7 +20,10 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
 <body>
 
-    <h1>List all books in your library</h1>
+    <h1>
+        <a href="/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        List all books in your library
+    </h1>
 
     <p><button id="show-search-form-button" onclick="ShowSearchForm()">Search Books v</button></p>
     <form id="search-form" style="display:none;" action="" method="post">
@@ -56,9 +59,6 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
     <?php #display books table
     include $_SERVER['DOCUMENT_ROOT']."/modules/books/listBooks.php" 
     ?>
-
-    <br><br>
-    <nav><a href="/index.php">Back to HomePage</a></nav>
 
     <script type="text/javascript">
     function ConfirmDeleteAll() {

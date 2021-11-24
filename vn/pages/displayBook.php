@@ -21,6 +21,7 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 
 <body>
     <h1>
+        <a href="/vn/pages/listBooks.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
         Sách - ISBN: <?php echo $isbn; ?>
         <a href="/vn/pages/listBooks.php?delbook=<?php echo $isbn; ?>" onclick="return ConfirmDeleteOne(<?php echo $isbn; ?>)"><input class="icon-button" type="image" src="/assets/images/delete.png" /></a>
         <a href="/vn/pages/updateBook.php?isbn=<?php echo $isbn; ?>"><input class="icon-button" type="image" src="/assets/images/update.png" /></a> 
@@ -40,11 +41,6 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     <p><?php if($summary!="") {echo $summary;} else {echo "Trống";} ?></p>
     <h3>Lần sửa cuối cùng</h3>
     <p><?php echo $last_modification; ?></p>
-
-    
-    <br>
-
-    <nav><a href="/vn/pages/listBooks.php">Quay về thư viện</a></nav>
 
     <script>
         function ConfirmDeleteOne(isbn) {

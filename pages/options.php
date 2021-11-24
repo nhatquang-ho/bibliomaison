@@ -18,15 +18,15 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 ?>
 
 <body>
-    <h1>PARAMETERS</h1>
+    <h1>
+        <a href="/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        PARAMETERS
+    </h1>
     <menu>
         <li><a href="/pages/profileSettings.php"><button type="button">Change your profile settings</button></a></li>
         <li><a href="/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button type="button">Delete your
                     account!</button></a></li>
     </menu>
-
-    <nav><a href="/index.php">Back to HomePage</a></nav>
-
 
     <script type="text/javascript">
     function Confirm() {

@@ -21,9 +21,10 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
 <body>
     <h1>
+        <a href="/pages/listBooks.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
         Book - ISBN: <?php echo $isbn; ?>
         <a href="/pages/listBooks.php?delbook=<?php echo $isbn; ?>" onclick="return ConfirmDeleteOne(<?php echo $isbn; ?>)"><input class="icon-button" type="image" src="/assets/images/delete.png" /></a>
-        <a href="/pages/updateBook.php?isbn=<?php echo $isbn; ?>"><input class="icon-button" type="image" src="/assets/images/update.png" /></a> 
+        <a href="/pages/updateBook.php?isbn=<?php echo $isbn; ?>"><input class="icon-button" type="image" src="/assets/images/update.png" /></a>
     </h1>
     
     <h3>Title</h3>
@@ -41,10 +42,6 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
     <h3>Last modification</h3>
     <p><?php echo $last_modification; ?></p>
 
-    
-    <br>
-
-    <nav><a href="/pages/listBooks.php">Back to list books</a></nav>
 
     <script>
         function ConfirmDeleteOne(isbn) {
