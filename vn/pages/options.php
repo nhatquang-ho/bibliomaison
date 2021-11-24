@@ -20,8 +20,8 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 <body>
     <h1>Cài đặt</h1>
     <menu>
+        <li><a href="/vn/pages/profileSettings.php"><button type="button">Thay đổi thông tin tài khoản</button></a></li>
         <li><a href="/vn/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button type="button">Xóa tài khoản!</button></a></li>
-        <li><a href="/vn/pages/password.php"><button type="button">Thay đổi mặt khẩu</button></a></li>
     </menu>
 
     <nav><a href="/vn/index.php">Quay về trang chủ</a></nav>

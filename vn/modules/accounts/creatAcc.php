@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $email = $_POST["email"];
     if (!preg_match("/^[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\\.[a-z][a-z]+$/",$email)) {
-      $emailErr = "email không hợp lệ";
+      $emailErr = "Email không hợp lệ";
     }
   }
 }
