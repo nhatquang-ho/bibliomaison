@@ -19,7 +19,7 @@ for ($n = 0; $n < $quantity; $n++) {
 
     $num = ((int)$count['COUNT(*)'])+1;
     $isbn = "testbook" . $num;
-    $title = "Test Book Tittle " . $num;
+    $title = "Test Book Title " . $num;
     $category = "Unknown";
     $year = "2021";
     $edition = "Unknown";
