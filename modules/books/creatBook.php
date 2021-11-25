@@ -84,8 +84,9 @@ if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
     #Check to see if the book wanted to add exists
     $existbook = mysql_query("SELECT isbn FROM $name where isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     if(mysql_fetch_assoc($existbook)){
-        die('<script>alert("Book existed!");</script>');
+        echo '<script>alert("Book existed!");</script>';
         echo '<script>console.log("Book existed")</script>';
+        echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/creatBook.php"} , 0);</script>';
     }
 
     #add the book to the database

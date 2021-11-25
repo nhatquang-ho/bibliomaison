@@ -64,7 +64,7 @@ if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
             </script>'.
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne('. $isbn .')"><input type="image" src="/assets/images/delete.png" /></a></td>
+            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
             <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
@@ -121,7 +121,7 @@ elseif(isset($_POST['search_title']) && !empty($_POST["title"])){
             </script>'.
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne('. $isbn .')"><input type="image" src="/assets/images/delete.png" /></a></td>
+            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
             <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
@@ -181,7 +181,7 @@ elseif(isset($_POST['search_category']) && !empty($_POST["category"])){
             </script>'.
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne('. $isbn .')"><input type="image" src="/assets/images/delete.png" /></a></td>
+            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
             <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
@@ -236,7 +236,7 @@ else {
             </script>'.
             '</td>
             <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne('. $isbn .')"><input type="image" src="/assets/images/delete.png" /></a></td>
+            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
             <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
       $num_row = $num_row + 1;
     }
@@ -294,8 +294,8 @@ function sortTable(index) {
   }
 }
 
-function ConfirmDeleteOne(isbn) {
-        if (confirm('Do you want to delete this book? (ISBN: '+ isbn +')')) {
+function ConfirmDeleteOne(value) {
+        if (confirm('Bạn có chắc muốn xóa tựa sách này? (ISBN: '+ value +')')) {
             return true;
         } else {
             return false;
