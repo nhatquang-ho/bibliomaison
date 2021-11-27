@@ -77,6 +77,10 @@ tr td {
   cursor:pointer;
 }
 
+th a {
+  display: block;
+}
+
 
 /*button*/
 button {

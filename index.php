@@ -35,6 +35,7 @@ if($_SESSION["username"] == "tipou") {
     <menu>
         <li><a href="/modules/testers/addtestbooks.php?quantity=10"><button type="button">Add 10 books</button></a></li>
         <li><a href="/modules/testers/addtestbooks.php?quantity=100"><button type="button">Add 100 books</button></a></li>
+        <li><a href="/modules/testers/addtestbooks.php?quantity=1000"><button type="button">Add 1000 books</button></a></li>
     </menu>
 
 <?php
