@@ -74,11 +74,6 @@ if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
     
     include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
-    #count books
-    $count = mysql_query("SELECT COUNT(*) FROM $name");
-    $count = mysql_fetch_assoc($count);
-    $num = ((int)$count['COUNT(*)'])+1;
-
     $last_modification = date('Y-m-d H:i:s');
 
     #Check to see if the book wanted to add exists
@@ -90,7 +85,7 @@ if(isset($_POST['creatbook']) && $isbnErr=="" && $yearErr=="" && $titleErr==""){
     }
 
     #add the book to the database
-    $addbook = mysql_query("INSERT INTO $name(num,isbn,title,category,year,edition,authors,summary,last_modification) VALUES('$num','$isbn','$title','$category','$year','$edition','$authors','$summary','$last_modification')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+    $addbook = mysql_query("INSERT INTO $name(isbn,title,category,year,edition,authors,summary,last_modification) VALUES('$isbn','$title','$category','$year','$edition','$authors','$summary','$last_modification')") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
     echo '<script>alert("Your book is successfully added");</script>';
     echo '<script>console.log("Book added")</script>';

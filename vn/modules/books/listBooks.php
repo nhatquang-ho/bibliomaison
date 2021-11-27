@@ -9,296 +9,258 @@ $name=$_SESSION["username"];
 
 include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
+if(isset($_POST['search_isbn']) && !empty($_POST['isbn'])){
+  $isbn_s = $_POST['isbn'];
+  echo '<script type="text/javascript">setTimeout(function(){window.top.location="'. $_SERVER['PHP_SELF'] . '?search=isbn&isbn_s='. $isbn_s .'&sort=title_asc"} , 0);</script>';
+}
+if(isset($_POST['search_title']) && !empty($_POST['title'])){
+  $title_s = $_POST['title'];
+  echo '<script type="text/javascript">setTimeout(function(){window.top.location="'. $_SERVER['PHP_SELF'] . '?search=title&title_s='. $title_s .'&sort=title_asc"} , 0);</script>';
+}
+if(isset($_POST['search_category'])){
+  if ($_POST['category'] == "Khac"){
+    if (!empty($_POST['category-other'])){
+      $category_s = $_POST['category-other'];
+      echo '<script type="text/javascript">setTimeout(function(){window.top.location="'. $_SERVER['PHP_SELF'] . '?search=category&category_s='. $category_s .'&sort=title_asc"} , 0);</script>';
+    }
+    else {
+      break;
+    }
+  }
+  else {
+    $category_s = $_POST['category'];
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="'. $_SERVER['PHP_SELF'] . '?search=category&category_s='. $category_s .'&sort=title_asc"} , 0);</script>';
+  }
+}
+
+
 #Delete a book
 if(isset($_GET['delbook'])){
   $isbn=$_GET['delbook'];
   $sql = mysql_query('DELETE FROM '.$name.' WHERE isbn="'.$isbn.'"') or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+  $query = $_GET;
+  unset($query['delbook']);
+  $query = http_build_query($query);
   echo '<script>console.log("Book isnb-'. $isbn .' deleted")</script>';
-  echo '<script type="text/javascript">setTimeout(function(){window.top.location="/vn/pages/listBooks.php"} , 0);</script>';
+  echo '<script type="text/javascript">setTimeout(function(){window.top.location="'. $_SERVER['PHP_SELF'] . '?' . $query .'"} , 0);</script>';
 }
 
-#Search book via isbn and display
-if(isset($_POST['search_isbn']) && !empty($_POST["isbn"])){
-  $isbn_s=$_POST["isbn"];
 
-  $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
-  if (mysql_num_rows($books)>0) {
-    echo '<table style="width:100%" id="myTable">';
-    echo '<tr>
-            <th class="column-sort" onclick="sortTable(0)">STT↕</th>
-            <th>ISBN</th>
-            <th class="column-sort" onclick="sortTable(2)">Tựa đề↕</th>
-            <th>Thể loại</th>
-            <th class="column-sort" onclick="sortTable(4)">Năm↕</th>
-            <th>Nhà xuất bản</th>
-            <th class="column-sort" onclick="sortTable(6)">Tác giả↕</th>
-            <th>Tóm tắt</th>
-            <th>Lần sửa cuối</th>
-            <th>Xóa</th>
-            <th>Sửa</th>
-          </tr>';
+$query = $_GET;
 
-    $num_row = 0;
-    while ($book = mysql_fetch_assoc($books)) {
-      $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
-            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
-            <td>'.
-            '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
-            <script>
-            function show_text_'. $num_row .'(){
-              var x = document.getElementById("summary-'. $num_row .'");
-              if(x.style.display == "none"){
-                x.style.display = "block";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..less..";
-              }
-              else{
-                x.style.display = "none";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..more..";
-              }
-              
-            }
-            </script>'.
-            '</td>
-            <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
-      $num_row = $num_row + 1;
+#Display books list
+switch ($_GET['search']) {
+  case "isbn":
+    $isbn_s = $_GET['isbn_s'];
+    switch ($_GET['sort']){
+      case "title_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_desc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "title_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY title DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_asc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "year_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY year ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_desc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "year_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY year DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_asc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "authors_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY authors ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_desc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      case "authors_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY authors DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_asc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      default:
+        $books = mysql_query("SELECT * FROM $name WHERE isbn='$isbn_s' ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        break;
     }
-    echo '</table>';
-  }else {
-    echo "Không tìm thấy sách<br>";
-  }
+    break;
+  case "title":
+    $title_s = $_GET['title_s'];
+    switch ($_GET['sort']) {
+      case "title_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_desc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "title_desc": 
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY title DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_asc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "year_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY year ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_desc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "year_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY year DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_asc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "authors_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY authors ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_desc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      case "authors_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY authors DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_asc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      default:
+        $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        break;
+    }
+    break;
+  case "category":
+    $category_s = $_GET['category_s'];
+    switch ($_GET['sort']) {
+      case "title_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_desc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "title_desc": 
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY title DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_asc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "year_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY year ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_desc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "year_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY year DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_asc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "authors_asc":
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY authors ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_desc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      case "authors_desc":
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY authors DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_asc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      default:
+        $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        break;
+    }
+    break;
+  default:
+    switch ($_GET['sort']) {
+      case "title_asc":
+        $books = mysql_query("SELECT * FROM $name ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_desc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "title_desc": 
+        $books = mysql_query("SELECT * FROM $name ORDER BY title DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "title_asc";
+        $query_title_sort = http_build_query($query);
+        break;
+      case "year_asc":
+        $books = mysql_query("SELECT * FROM $name ORDER BY year ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_desc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "year_desc":
+        $books = mysql_query("SELECT * FROM $name ORDER BY year DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "year_asc";
+        $query_year_sort = http_build_query($query);
+        break;
+      case "authors_asc":
+        $books = mysql_query("SELECT * FROM $name ORDER BY authors ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_desc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      case "authors_desc":
+        $books = mysql_query("SELECT * FROM $name ORDER BY authors DESC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        $query['sort'] = "authors_asc";
+        $query_authors_sort = http_build_query($query);
+        break;
+      default:
+        $books = mysql_query("SELECT * FROM $name ORDER BY title ASC") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+        break;
+    }
+    break;
 }
 
-#Search book via title and display
-elseif(isset($_POST['search_title']) && !empty($_POST["title"])){
-  $title_s=$_POST["title"];
+if ($query_title_sort == ""){
+  $query['sort'] = "title_asc";
+  $query_title_sort = http_build_query($query);
+}
+if ($query_year_sort == ""){
+  $query['sort'] = "year_asc";
+  $query_year_sort = http_build_query($query);
+}
+if ($query_authors_sort == ""){
+  $query['sort'] = "authors_asc";
+  $query_authors_sort = http_build_query($query);
+}
 
-  $books = mysql_query("SELECT * FROM $name WHERE title LIKE '%$title_s%' ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
-  if (mysql_num_rows($books)>0) {
-    echo '<table style="width:100%" id="myTable">';
-    echo '<tr>
-            <th class="column-sort" onclick="sortTable(0)">STT↕</th>
-            <th>ISBN</th>
-            <th class="column-sort" onclick="sortTable(2)">Tựa đề↕</th>
-            <th>Thể loại</th>
-            <th class="column-sort" onclick="sortTable(4)">Năm↕</th>
-            <th>Nhà xuất bản</th>
-            <th class="column-sort" onclick="sortTable(6)">Tác giả↕</th>
-            <th>Tóm tắt</th>
-            <th>Lần sửa cuối</th>
-            <th>Xóa</th>
-            <th>Sửa</th>
-          </tr>';
+if (mysql_num_rows($books) > 0) {
+  
+  echo '<table style="width:100%" id="myTable">';
+  echo '<tr>
+          <th>STT</th>
+          <th>ISBN</th>
+          <th class="column-sort">
+            <a href="'. $_SERVER['PHP_SELF'] . '?' . $query_title_sort .'">Tựa đề↕</a>
+          </th>
+          <th>Thể loại</th>
+          <th class="column-sort">
+            <a href="'. $_SERVER['PHP_SELF'] . '?' . $query_year_sort .'">Năm↕</a>
+          </th>
+          <th>Nhà xuất bản</th>
+          <th class="column-sort">
+            <a href="'. $_SERVER['PHP_SELF'] . '?' . $query_authors_sort .'">Tác giả↕</a>
+          </th>
+          <th>Lần sửa cuối</th>
+          <th>Xóa</th>
+          <th>Sửa</th>
+        </tr>';
     
-    $num_row = 0;
-    while ($book = mysql_fetch_assoc($books)) {
-      $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
-            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
-            <td>'.
-            '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
-            <script>
-            function show_text_'. $num_row .'(){
-              var x = document.getElementById("summary-'. $num_row .'");
-              if(x.style.display == "none"){
-                x.style.display = "block";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..less..";
-              }
-              else{
-                x.style.display = "none";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..more..";
-              }
-              
-            }
-            </script>'.
-            '</td>
-            <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
-      $num_row = $num_row + 1;
-    }
-    echo '</table>';
-  }else {
-    echo "Không tìm thấy sách<br>";
+  $num_row = 1;
+  while ($book = mysql_fetch_assoc($books)) {
+    $isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$last_modification=$book["last_modification"];
+    echo '<tr><td>' . $num_row . '</td>
+          <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
+          <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
+          <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
+          <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
+          <td><a href="'. $_SERVER['REQUEST_URI'] .'&delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
+          <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
+    $num_row = $num_row + 1;
   }
-}
-
-#Search book via category and display
-elseif(isset($_POST['search_category']) && !empty($_POST["category"])){
-  $category_s = $_POST["category"];
-  if ($category_s == "Khac" && !empty($_POST["category-other"])){
-    $category_s = $_POST["category-other"]; 
-  }
-
-  $books = mysql_query("SELECT * FROM $name WHERE category='$category_s' ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
-  if (mysql_num_rows($books)>0) {
-    echo '<table style="width:100%" id="myTable">';
-    echo '<tr>
-            <th class="column-sort" onclick="sortTable(0)">STT↕</th>
-            <th>ISBN</th>
-            <th class="column-sort" onclick="sortTable(2)">Tựa đề↕</th>
-            <th>Thể loại</th>
-            <th class="column-sort" onclick="sortTable(4)">Năm↕</th>
-            <th>Nhà xuất bản</th>
-            <th class="column-sort" onclick="sortTable(6)">Tác giả↕</th>
-            <th>Tóm tắt</th>
-            <th>Lần sửa cuối</th>
-            <th>Xóa</th>
-            <th>Sửa</th>
-          </tr>';
-
-    $num_row = 0;
-    while ($book = mysql_fetch_assoc($books)) {
-      $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
-            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
-            <td>'.
-            '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
-            <script>
-            function show_text_'. $num_row .'(){
-              var x = document.getElementById("summary-'. $num_row .'");
-              if(x.style.display == "none"){
-                x.style.display = "block";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..less..";
-              }
-              else{
-                x.style.display = "none";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..more..";
-              }
-              
-            }
-            </script>'.
-            '</td>
-            <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
-      $num_row = $num_row + 1;
-    }
-    echo '</table>';
-  }else {
-    echo "Không tìm thấy sách<br>";
-  }
-}
-
-#Display all books
-else {
-  $books = mysql_query("SELECT * FROM $name ORDER BY num") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
-  if (mysql_num_rows($books)>0) {
-    echo '<table style="width:100%" id="myTable">';
-    echo '<tr>
-            <th class="column-sort" onclick="sortTable(0)">STT↕</th>
-            <th>ISBN</th>
-            <th class="column-sort" onclick="sortTable(2)">Tựa đề↕</th>
-            <th>Thể loại</th>
-            <th class="column-sort" onclick="sortTable(4)">Năm↕</th>
-            <th>Nhà xuất bản</th>
-            <th class="column-sort" onclick="sortTable(6)">Tác giả↕</th>
-            <th>Tóm tắt</th>
-            <th>Lần sửa cuối</th>
-            <th>Xóa</th>
-            <th>Sửa</th>
-          </tr>';
-    
-    $num_row = 0;
-    while ($book = mysql_fetch_assoc($books)) {
-      $num=$book["num"];$isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$summary=$book["summary"];$last_modification=$book["last_modification"];
-      echo '<tr><td>' . $num . '</td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
-            <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
-            <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
-            <td>'.
-            '<p id="summary-'. $num_row .'" style="display:none;">'. $summary .'</p>'.
-            '<a href="javascript:void(0)" id="summary-button-'. $num_row .'" onclick="show_text_'. $num_row .'()">..more..</a>
-            <script>
-            function show_text_'. $num_row .'(){
-              var x = document.getElementById("summary-'. $num_row .'");
-              if(x.style.display == "none"){
-                x.style.display = "block";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..less..";
-              }
-              else{
-                x.style.display = "none";
-                document.getElementById("summary-button-'. $num_row .'").innerHTML = "..more..";
-              }
-              
-            }
-            </script>'.
-            '</td>
-            <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-            <td><a href="?delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
-            <td><a href="/vn/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
-      $num_row = $num_row + 1;
-    }
-    echo '</table>';
-  } else {
-    echo "Chưa có sách<br>";
-  }
+  echo '</table>';
+} else {
+  echo "Không có sách<br>";
 }
 ?>
 <script>
-function sortTable(index) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  dir = "asc"; 
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[index];
-      y = rows[i + 1].getElementsByTagName("TD")[index];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-  if(dir == "desc"){
-    let name = rows[0].getElementsByTagName("TH")[index].innerHTML = rows[0].getElementsByTagName("TH")[index].innerHTML;
-    name = name.substring(0, name.length-1) + "↑";
-    rows[0].getElementsByTagName("TH")[index].innerHTML = rows[0].getElementsByTagName("TH")[index].innerHTML = name;
-  }
-  else {
-    let name = rows[0].getElementsByTagName("TH")[index].innerHTML = rows[0].getElementsByTagName("TH")[index].innerHTML;
-    name = name.substring(0, name.length-1) + "↓";
-    rows[0].getElementsByTagName("TH")[index].innerHTML = rows[0].getElementsByTagName("TH")[index].innerHTML = name;
-  }
-}
-
 function ConfirmDeleteOne(value) {
         if (confirm('Bạn có chắc muốn xóa tựa sách này? (ISBN: '+ value +')')) {
             return true;
         } else {
             return false;
         }
-    }
+}
 </script>

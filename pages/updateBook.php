@@ -20,7 +20,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
     <h1>
         <a href="javascript:history.go(-1)"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
-        Public Library: Update a book
+        Update a book
     </h1>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" readonly="readonly" value="<?php echo $isbn ?>" /></label>

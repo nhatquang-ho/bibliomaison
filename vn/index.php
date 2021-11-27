@@ -35,6 +35,7 @@ if($_SESSION["username"] == "tipou") {
     <menu>
         <li><a href="/vn/modules/testers/addtestbooks.php?quantity=10"><button type="button">Thêm 10 tựa sách</button></a></li>
         <li><a href="/vn/modules/testers/addtestbooks.php?quantity=100"><button type="button">Thêm 100 tựa sách</button></a></li>
+        <li><a href="/vn/modules/testers/addtestbooks.php?quantity=1000"><button type="button">Thêm 1000 tựa sách</button></a></li>
     </menu>
 
 <?php
