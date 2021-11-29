@@ -9,14 +9,14 @@
 </head>
 
 <?php
+if($_SESSION["name"]) {
+?>
+
+<?php
 include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 ?>
 
 <body>
-
-    <?php
-if($_SESSION["name"]) {
-?>
 
     <h1>
         <a href="/vn/pages/listBooks.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
