@@ -245,12 +245,15 @@ if (mysql_num_rows($books) > 0) {
   $num_row = 1;
   while ($book = mysql_fetch_assoc($books)) {
     $isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$last_modification=$book["last_modification"];
+    $query = $_GET;
+    $query['delbook'] = $isbn;
+    $query = http_build_query($query);
     echo '<tr class="row-hover"><td>' . $num_row . '</td>
           <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
           <td><a href="/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
           <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
           <td>' . date('d-m-Y H:i', strtotime($last_modification)) . '</td>
-          <td><a href="'. $_SERVER['REQUEST_URI'] .'&delbook='. $isbn .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
+          <td><a href="'. $_SERVER['PHP_SELF'] . '?' . $query .'" onclick="return ConfirmDeleteOne(\''. $isbn .'\')"><input type="image" src="/assets/images/delete.png" /></a></td>
           <td><a href="/pages/updateBook.php?isbn='.$isbn.'"><input type="image" src="/assets/images/update.png" /></a></td></tr>';
     $num_row = $num_row + 1;
   }
