@@ -24,6 +24,10 @@ $path = substr($_SERVER['REQUEST_URI'],3);
         <input id="username-input" type="text" name="username" maxlength="30"><br>
         <span class="error"><?php echo $usernameErr;?></span>
         <br><br>
+        Email đăng ký tài khoản của bạn:<br>
+        <input type="text" name="email" maxlength="30"><br>
+        <span class="error"><?php echo $emailErr;?></span>
+        <br><br>
         <input type="submit" name="submit" value="Xác nhận">
     </form>
 
