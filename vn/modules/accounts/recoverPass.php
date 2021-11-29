@@ -15,27 +15,31 @@ function generateRandomString($length) {
     return $randomString;
 }
 
-$usernameErr="";
-$username="";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$username = $email = "";
+$usernameErr = $emailErr = "";
+if(isset($_POST['submit'])) {
+    $username = $usernameErr = "";
+    $email = $emailErr = "";
     if (empty($_POST["username"])) {
-        $usernameErr="Tên tài khoản bắt buộc!";
+        $usernameErr = "Vui lòng điền tên tài khoản";
     } else {
         $username = $_POST["username"];
-        if (!preg_match("/^[a-zA-Z0-9]*$/",$username) || strlen($username) < 6 || strlen($username) > 30 ) {
-          $usernameErr = "Tên tài khoản không hợp lệ";
-        }
+    }
+    if (empty($_POST["email"])) {
+        $emailErr = "Vui lòng điền email";
+    } else {
+        $email = $_POST["email"];
     }
 }
 
-if(isset($_POST['submit']) && $usernameErr==""){
+if(isset($_POST['submit']) && $usernameErr =="" && $emailErr ==""){
     include $_SERVER['DOCUMENT_ROOT']."/modules/connectDB.php";
 
     #get the user
-    $getuser = mysql_query("SELECT * FROM login_user WHERE user_name='$username'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
+    $getuser = mysql_query("SELECT * FROM login_user WHERE user_name='$username' AND email='$email'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
     $user = mysql_fetch_assoc($getuser);
     if(!$user){
-        echo '<script>alert("Tài khoản không tồn tại!");</script>';
+        echo '<script>alert("Tên tài khoản/Email không chích xác!");</script>';
     }
     else {
         $name = $user["name"];

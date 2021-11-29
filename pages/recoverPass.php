@@ -19,13 +19,18 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
     <br><br><br>
     <center>
     <h3>Please enter the information below to recover your password:</h3>
+
     <form name="frmUser" method="post" action="">
         Username:<br>
-        <input id="username-input" type="text" name="username" maxlength="30"><br>
+        <input type="text" name="username" maxlength="30"><br>
         <span class="error"><?php echo $usernameErr;?></span>
         <br><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+        Email associated to your account:<br>
+        <input type="text" name="email" maxlength="30"><br>
+        <span class="error"><?php echo $emailErr;?></span>
+        <br><br>
+        <input type="submit" name="submit" value="Reset password">
+    </form>   
 
     <a href="/pages/login.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
 
