@@ -204,15 +204,19 @@ switch ($_GET['search']) {
 }
 
 if ($query_title_sort == ""){
-  $query['sort'] = "title_desc";
+  if ($query['sort'] == ""){
+    $query['sort'] = "title_desc";
+  } else {
+    $query['sort'] = "title_asc";
+  }
   $query_title_sort = http_build_query($query);
 }
 if ($query_year_sort == ""){
-  $query['sort'] = "year_desc";
+  $query['sort'] = "year_asc";
   $query_year_sort = http_build_query($query);
 }
 if ($query_authors_sort == ""){
-  $query['sort'] = "authors_desc";
+  $query['sort'] = "authors_asc";
   $query_authors_sort = http_build_query($query);
 }
 
