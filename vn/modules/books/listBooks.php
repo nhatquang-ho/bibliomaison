@@ -204,15 +204,15 @@ switch ($_GET['search']) {
 }
 
 if ($query_title_sort == ""){
-  $query['sort'] = "title_asc";
+  $query['sort'] = "title_desc";
   $query_title_sort = http_build_query($query);
 }
 if ($query_year_sort == ""){
-  $query['sort'] = "year_asc";
+  $query['sort'] = "year_desc";
   $query_year_sort = http_build_query($query);
 }
 if ($query_authors_sort == ""){
-  $query['sort'] = "authors_asc";
+  $query['sort'] = "authors_desc";
   $query_authors_sort = http_build_query($query);
 }
 
@@ -241,7 +241,7 @@ if (mysql_num_rows($books) > 0) {
   $num_row = 1;
   while ($book = mysql_fetch_assoc($books)) {
     $isbn=$book["isbn"];$title=$book["title"];$category=$book["category"];$year=$book["year"];$edition=$book['edition'];$authors=$book["authors"];$last_modification=$book["last_modification"];
-    echo '<tr><td>' . $num_row . '</td>
+    echo '<tr class="row-hover"><td>' . $num_row . '</td>
           <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $isbn . '</a></td>
           <td><a href="/vn/pages/displayBook.php?isbn=' . $isbn . '">' . $title . '</a></td>
           <td>' . $category . '</td><td>' . $year . '</td><td>' . $edition . '</td><td>' . $authors . '</td>
