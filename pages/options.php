@@ -24,7 +24,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
     </h1>
     <menu>
         <li><a href="/pages/profileSettings.php"><button type="button">Change your profile settings</button></a></li>
-        <li><a href="/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button type="button">Delete your
+        <li><a href="/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button style="background-color:#FF856B;" type="button">Delete your
                     account!</button></a></li>
     </menu>
 

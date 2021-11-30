@@ -20,13 +20,13 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
     <h1>
         <a href="javascript:history.go(-1)"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
-        Update a book
+        Update book - ISBN: <?php echo $isbn; ?>
     </h1>
     <form method="post" action="">
         <label>ISBN: <input type="text" name="isbn" readonly="readonly" value="<?php echo $isbn ?>" /></label>
         <br><br>
         <label>Title: <input type="text" name="title" value="<?php echo $title; ?>" maxlength="50" /></label>
-        <span class="error"><?php echo $titleErr;?></span>
+        <span class="error">* <?php echo $titleErr;?></span>
         <br><br>
         <label>Category:
         <select id="mySelect" name="category" onchange="otherCheck(this);">
@@ -46,7 +46,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
         </label>
         <br><br>
         <label>Year: <input type="text" name="year" value="<?php echo $year; ?>"  maxlength="4" /></label>
-        <span class="error"><?php echo $yearErr;?></span>
+        <span class="error">* <?php echo $yearErr;?></span>
         <br><br>
         <label>Edition: <input type="text" name="edition" value="<?php echo $edition; ?>"  maxlength="30" /></label>
         <br><br>

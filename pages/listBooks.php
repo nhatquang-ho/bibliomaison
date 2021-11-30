@@ -22,10 +22,10 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
     <h1>
         <a href="/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
-        List all books in your library
+        Your books<?php if(isset($_GET['search'])) {echo " - " . $_GET['search'] . " search: " . $_GET['isbn_s'] . $_GET['title_s'] . $_GET['category_s'];} ?>
     </h1>
 
-    <p><button id="show-search-form-button" onclick="ShowSearchForm()">Search Books v</button></p>
+    <p><button id="show-search-form-button" onclick="ShowSearchForm()">Search v</button></p>
     <form id="search-form" style="display:none;" action="" method="post">
         <input type="text" name="isbn">
         <input type="submit" name="search_isbn" value="Search isbn">
@@ -51,8 +51,8 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
     </form>
 
     <br>
-    <a href="/pages/createBook.php"><button type="button">Add a new book</button></a>
-    <a href="/modules/books/deleteAllBooks.php" onclick="return ConfirmDeleteAll()"><button type="button">Delete all books</button></a>
+    <a href="/pages/createBook.php"><button style="background-color:#6BBCFF;" type="button">Add book</button></a>
+    <a href="/modules/books/deleteAllBooks.php" onclick="return ConfirmDeleteAll()"><button style="background-color:#FF856B;" type="button">Delete all books</button></a>
     <br>
     <p></p>
     
@@ -62,7 +62,7 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
 
     <script type="text/javascript">
     function ConfirmDeleteAll() {
-        if (confirm('Do you want to delete all books?')) {
+        if (confirm('Do you want to delete all books in your library?')) {
             return true;
         } else {
             return false;
@@ -82,11 +82,11 @@ include $_SERVER['DOCUMENT_ROOT']."/include/header.php";
             var x = document.getElementById("search-form");
             if (x.style.display == "none"){
                 x.style.display = "block";
-                document.getElementById("show-search-form-button").innerHTML = "Search Books ᴧ";
+                document.getElementById("show-search-form-button").innerHTML = "Search ᴧ";
             }
             else {
                 x.style.display = "none";
-                document.getElementById("show-search-form-button").innerHTML = "Search Books v";
+                document.getElementById("show-search-form-button").innerHTML = "Search v";
             }
             
     }

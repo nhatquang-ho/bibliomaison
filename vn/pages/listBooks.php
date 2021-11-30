@@ -22,7 +22,20 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
 
     <h1>
         <a href="/vn/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
-        Sách của bạn
+        Sách của bạn<?php 
+                        if(isset($_GET['search'])) {
+                            if($_GET['search'] == "isbn"){
+                                echo " - Tìm kiếm ISBN: " . $_GET['isbn_s'];
+                            } elseif ($_GET['search'] == "title"){
+                                echo " - Tìm kiếm tựa đề: " . $_GET['title_s'];
+                            } elseif ($_GET['search'] == "category"){
+                                echo " - Tìm kiếm thể loại: " . $_GET['category_s'];
+                            }
+                            else{
+                                break;
+                            }
+                        } 
+                    ?>
     </h1>
 
     <p><button id="show-search-form-button" onclick="ShowSearchForm()">Tìm kiếm v</button></p>
@@ -51,8 +64,8 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     </form>
 
     <br>
-    <a href="/vn/pages/createBook.php"><button type="button">Thêm sách</button></a>
-    <a href="/vn/modules/books/deleteAllBooks.php" onclick="return ConfirmDeleteAll()"><button type="button">Xóa tất cả sách</button></a>
+    <a href="/vn/pages/createBook.php"><button style="background-color:#6BBCFF;" type="button">Thêm sách</button></a>
+    <a href="/vn/modules/books/deleteAllBooks.php" onclick="return ConfirmDeleteAll()"><button style="background-color:#FF856B;" type="button">Xóa tất cả sách</button></a>
     <br>
     <p></p>
 

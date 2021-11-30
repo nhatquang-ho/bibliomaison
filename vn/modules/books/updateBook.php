@@ -31,8 +31,7 @@ $summary = $book['summary'];
 #set conditions for input values
 $yearErr=$titleErr="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $isbn=$title=$year="";
-    $isbnErr=$titleErr=$yearErr="";
+    $titleErr=$yearErr="";
     if (!empty($_POST["year"])) {
         $year = $_POST["year"];
         // check year valid
@@ -52,6 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         $category = $_POST['category'];
+    }
+    if ($titleErr != "" || $yearErr != ""){
+        echo '<script type="text/javascript">setTimeout(function(){window.top.location="javascript:history.go(-1)"} , 1000);</script>';
     }
 }
 

@@ -31,13 +31,12 @@ $summary = $book['summary'];
 #set conditions for input values
 $yearErr=$titleErr="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $isbn=$title=$year="";
-    $isbnErr=$titleErr=$yearErr="";
+    $titleErr=$yearErr="";
     if (!empty($_POST["year"])) {
         $year = $_POST["year"];
         // check year valid
         if (!preg_match("/^[0-9]*$/",$year) || (int)$year > (int)date("Y") || (int)$year <= 1900) {
-        $yearErr = "incorrect year (1901 - ". date("Y") ." allowed)";
+            $yearErr = "incorrect year (1901 - ". date("Y") ." allowed)";
         }
     }
     if (empty($_POST["title"])) {
@@ -52,6 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         $category = $_POST['category'];
+    }
+    if ($titleErr != "" || $yearErr != ""){
+        echo '<script type="text/javascript">setTimeout(function(){window.top.location="javascript:history.go(-1)"} , 1000);</script>';
     }
 }
 

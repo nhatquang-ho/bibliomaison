@@ -24,7 +24,7 @@ include $_SERVER['DOCUMENT_ROOT']."/vn/include/header.php";
     </h1>
     <menu>
         <li><a href="/vn/pages/profileSettings.php"><button type="button">Thay đổi thông tin tài khoản</button></a></li>
-        <li><a href="/vn/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button type="button">Xóa tài khoản!</button></a></li>
+        <li><a href="/vn/modules/accounts/deleteAcc.php" onclick="return Confirm()"><button style="background-color:#FF856B;" type="button">Xóa tài khoản!</button></a></li>
     </menu>
 
     <script type="text/javascript">

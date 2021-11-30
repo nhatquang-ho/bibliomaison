@@ -42,7 +42,7 @@ if(isset($_GET['delbook'])){
   unset($query['delbook']);
   $query = http_build_query($query);
   echo '<script>console.log("Book isnb-'. $isbn .' deleted")</script>';
-  echo '<script type="text/javascript">setTimeout(function(){window.top.location="'. $_SERVER['PHP_SELF'] . '?' . $query .'"} , 0);</script>';
+  echo '<script type="text/javascript">setTimeout(function(){window.top.location="javascript:history.go(-1)"} , 0);</script>';
 }
 
 

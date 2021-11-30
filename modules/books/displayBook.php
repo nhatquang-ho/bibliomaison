@@ -15,9 +15,9 @@ $isbn = $_GET['isbn'];
 $getbook = mysql_query("SELECT * FROM $name WHERE isbn='$isbn'") or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 $book = mysql_fetch_assoc($getbook);
 if(!$book){
-    echo '<script>alert("Book not found");</script>';
+    #echo '<script>alert("Book not found");</script>';
     echo '<script>console.log("Book not found")</script>';
-    echo '<script type="text/javascript">setTimeout(function(){window.top.location="/pages/listBooks.php"} , 0);</script>';
+    echo '<script type="text/javascript">setTimeout(function(){window.top.location="javascript:history.go(-1)"} , 0);</script>';
 }
 
 $title = $book['title'];
