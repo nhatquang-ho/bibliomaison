@@ -114,7 +114,7 @@ button:hover {
 }
 
 input[type=image] {
-  background-color: #d9fbff;
+  background-color: transparent;
   width: 30px;
   border-radius: 100px;
 }
@@ -124,8 +124,8 @@ input[type=image] {
 }
 
 input[type=image]:hover {
-  background-color: #a6c8cc;
   box-shadow: 0px 0px 2px 2px black;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .button-lang {
