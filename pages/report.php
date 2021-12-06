@@ -19,7 +19,7 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
     <h1>
-        <a href="/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        <a href="javascript:history.go(-1)"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
         Please enter the information below
     </h1>
     <p><span class="error">* required field</span></p>

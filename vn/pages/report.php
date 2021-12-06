@@ -19,7 +19,7 @@ $path = substr($_SERVER['REQUEST_URI'],3);
     <a class="github-link" href="https://github.com/nhatquang-ho/bibliomaison/">GitHub</a>
 
     <h1>
-        <a href="/vn/index.php"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
+        <a href="javascript:history.go(-1)"><input class="icon-button" type="image" src="/assets/images/back-arrow.png" /></a>
         Vui lòng điền thông tin bên dưới:
     </h1>
     <p><span class="error">* bắt buộc</span></p>
