@@ -86,7 +86,7 @@ if(isset($_POST['savepass']) && ($re_pwdErr=="" && $pwdErr=="")){
         echo '<script>alert("You cannot change the password of the default account");</script>';
     }
     else {
-        $update_pass = mysql_query("UPDATE login_user SET password='$pass' WHERE user_name='$name'")
+        $update_pass = mysql_query("UPDATE login_user SET password='$pass' WHERE user_name='$username'")
             or die('<script>console.log("Error SQL : ")' . mysql_error() . '</script>');
 
         echo '<script>alert("Your password is successfully updated");</script>';
