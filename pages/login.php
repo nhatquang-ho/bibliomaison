@@ -30,7 +30,7 @@ $path = "/vn" . $_SERVER['REQUEST_URI'];
         <br>
         <input type="checkbox" onclick="Show_Hide_Pass()">Show Password
         <br><br>
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Login">
         <a href="/pages/creatAcc.php"><button type="button">Create your account</button></a>
     </form>
         <a href="/pages/recoverPass.php">Forgot your password?</a>
