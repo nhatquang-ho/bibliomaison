@@ -1,7 +1,7 @@
 # bibliomaison
 Visit our website: http://bibliomaison.free.fr/
 
-This is a personal project, just for a first experience with PHP
+This is a personal project, just for a first experience with PHP : Online personal library for stocking books information
 
 # Build with
 * PHP - v5.6
